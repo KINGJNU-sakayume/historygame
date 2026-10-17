@@ -1,0 +1,51 @@
+name: 빌드·배포 (GitHub Pages)
+
+# 저장소 Settings → Pages → Source를 "GitHub Actions"로 바꿔야 배포된다.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: 스키마·누출·출처 필수 검사
+        run: npm run validate
+      - name: 출처 URL·도메인 검사 (404/410이면 실패)
+        run: npm run check-urls -- --report report.md
+      - name: 작업 요약에 리포트 붙이기
+        if: always()
+        run: test -f report.md && cat report.md >> "$GITHUB_STEP_SUMMARY" || true
+      - name: 빌드 (선택지 셔플 포함)
+        run: npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

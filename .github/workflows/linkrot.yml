@@ -1,0 +1,41 @@
+name: 주간 링크 부패 검사
+
+on:
+  schedule:
+    - cron: '17 3 * * 1' # 매주 월요일 03:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  linkrot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run linkrot
+      - name: 끊긴 링크를 이슈로 등록
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { issues, warnings } = JSON.parse(fs.readFileSync('linkrot-report.json', 'utf8'));
+            const { owner, repo } = context.repo;
+            const open = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'open', labels: 'linkrot' });
+            const titles = new Set(open.map((i) => i.title));
+            for (const issue of issues) {
+              if (titles.has(issue.title)) { core.info(`이미 열린 이슈: ${issue.title}`); continue; }
+              await github.rest.issues.create({ owner, repo, title: issue.title, body: issue.body, labels: ['linkrot'] });
+              core.info(`이슈 등록: ${issue.title}`);
+            }
+            await core.summary
+              .addHeading('주간 링크 검사')
+              .addRaw(`끊긴 링크 ${issues.length}개, 경고(접근 제한·타임아웃) ${warnings.length}개`, true)
+              .addList(warnings.map((w) => `${w.status ?? '—'} ${w.url} ${w.note}`))
+              .write();

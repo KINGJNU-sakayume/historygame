@@ -1,0 +1,80 @@
+name: 시나리오 검증
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main] # main은 deploy.yml이 같은 검사를 한다
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+      - name: 스키마·누출·출처 필수 검사
+        id: validate
+        continue-on-error: true
+        run: npm run validate
+
+      - name: 출처 URL·도메인 검사
+        id: urls
+        continue-on-error: true
+        run: npm run check-urls -- --report report.md
+
+      - name: 작업 요약에 리포트 붙이기
+        if: always()
+        run: test -f report.md && cat report.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: PR에 리포트 코멘트
+        # 포크에서 온 PR은 쓰기 권한이 없으므로 건너뛴다
+        if: always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            if (!fs.existsSync('report.md')) return;
+            const marker = '<!-- historygame-validation-report -->';
+            const body = fs.readFileSync('report.md', 'utf8') +
+              `\n\n_커밋 ${context.sha.slice(0, 7)} 기준 · [실행 기록](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})_`;
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number });
+            const mine = comments.find((c) => c.user.type === 'Bot' && c.body.includes(marker));
+            if (mine) await github.rest.issues.updateComment({ owner, repo, comment_id: mine.id, body });
+            else await github.rest.issues.createComment({ owner, repo, issue_number, body });
+
+      - name: 결과 판정
+        if: steps.validate.outcome == 'failure' || steps.urls.outcome == 'failure'
+        run: |
+          echo "검증 실패: validate=${{ steps.validate.outcome }}, check-urls=${{ steps.urls.outcome }}"
+          exit 1
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env:
+          CI: true
