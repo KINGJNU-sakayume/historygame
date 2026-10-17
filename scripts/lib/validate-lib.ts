@@ -1,7 +1,7 @@
 import Ajv from 'ajv';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { Scenario } from '../../src/types.ts';
+import { ADVISORS, type Scenario } from '../../src/types.ts';
 import { findLeaks, maskedTexts } from './leak.ts';
 import { ROOT, type LoadedScenario } from './scenarios.ts';
 
@@ -54,12 +54,18 @@ function checkRefs(s: Scenario, dirName: string, dir: string, f: Findings) {
   Object.keys(s.tags.options).forEach((o) => optionRef(o, 'tags.options'));
   Object.keys(s.tags.decisions ?? {}).forEach((d) => decisionRef(d, 'tags.decisions'));
   optionRef(s.reveal.actual_choice, 'reveal.actual_choice');
-  s.reveal.actual_details?.forEach((d) => decisionRef(d, 'reveal.actual_details'));
+  const facts = Object.keys(s.reveal.decisions);
+  facts.forEach((d) => decisionRef(d, 'reveal.decisions'));
+  for (const d of decisions) if (!facts.includes(d)) err(`reveal.decisions에 세부 결정 "${d}"의 실제 기록이 없다 (모르면 did: null)`);
   s.reveal.counterfactuals.forEach((c) => optionRef(c.option, 'reveal.counterfactuals'));
   for (const i of s.reveal.identities) {
     if (!entities.includes(i.entity)) err(`reveal.identities: 없는 세력 "${i.entity}"`);
   }
   if (s.masked.map_svg && !existsSync(join(dir, s.masked.map_svg))) err(`지도 파일 없음: ${s.masked.map_svg}`);
+  if (s.reveal.map_svg && !existsSync(join(dir, s.reveal.map_svg))) err(`공개 지도 파일 없음: ${s.reveal.map_svg}`);
+  for (const f of s.reveal.figures) {
+    if (f.image && !existsSync(join(dir, 'figures', f.image))) err(`인물 이미지 파일 없음: figures/${f.image}`);
+  }
   if (s.masked.entities.filter((e) => e.self).length > 1) err('self(플레이어의 나라)는 하나만 둘 수 있다');
 
   // 정의되지 않은 대문자 한 글자는 세력 기호로 오인된다
@@ -72,6 +78,18 @@ function checkRefs(s: Scenario, dirName: string, dir: string, f: Findings) {
   for (const [letter, path] of stray) warn(`정의되지 않은 기호 "${letter}" @ ${path} — masked.entities에 넣거나 다른 말로 바꿀 것`);
 
   for (const o of options) if (!s.tags.options[o]?.length) warn(`선택지 "${o}"에 성향 태그가 없다`);
+
+  // docs/EPISODE_GUIDE.md의 분량 기준 (벗어나면 경고)
+  const range = (what: string, n: number, lo: number, hi: number) => {
+    if (n < lo || n > hi) warn(`${what} ${n}개 — 지침은 ${lo}~${hi}개`);
+  };
+  range('정보 카드', s.dossier.length, 15, 20);
+  range('방침(선택지)', options.length, 4, 4);
+  range('세부 결정', decisions.length, 6, 10);
+  range('반론', s.pushbacks.length, 8, 12);
+  for (const a of ADVISORS) if (!s.dossier.some((c) => c.advisor === a)) warn(`자문관 "${a}"에게 카드가 없다`);
+  if (!s.reveal.map_svg) warn('공개 화면용 실제 지도(reveal.map_svg)가 없다');
+  if (!s.reveal.figures.some((f) => f.image)) warn('인물 이미지가 하나도 없다');
   const allTags = [...Object.values(s.tags.options), ...Object.values(s.tags.decisions ?? {})].flat();
   for (const t of new Set(allTags)) {
     if (!knownTags.has(t)) warn(`config/tag-axes.json에 없는 태그 "${t}"`);

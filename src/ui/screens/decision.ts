@@ -34,6 +34,8 @@ export function decision(ctx: PlayCtx): HTMLElement {
     { class: 'screen decision' },
     h('h1', null, '결정'),
     keyPanel(scenario),
+    h('div', { class: 'decision-grid' },
+    h('div', { class: 'decide-col' },
     h('fieldset', { class: 'options' },
       h('legend', null, '방침'),
       options.map((o) =>
@@ -76,6 +78,8 @@ export function decision(ctx: PlayCtx): HTMLElement {
           ),
         )
       : null,
+    ),
+    h('div', { class: 'reason-col' },
     h('label', { class: 'reason' },
       h('span', { class: 'reason-label' }, '이렇게 정한 이유'),
       h('textarea', {
@@ -89,6 +93,8 @@ export function decision(ctx: PlayCtx): HTMLElement {
     h('div', { class: 'actions' },
       h('button', { class: 'btn', onclick: confirm }, '결정 확정'),
       h('button', { class: 'btn-text', onclick: () => ctx.commit((p) => (p.phase = 'inquiry'), { top: true }) }, '자문관에게 더 묻기'),
+    ),
+    ),
     ),
   );
 }

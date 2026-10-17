@@ -57,8 +57,12 @@ test('모바일에서 한 판을 끝까지 하고, 새로고침해도 기록이 
   await expect(page.getByRole('heading', { name: '가상 왕국 Testland' })).toBeVisible();
   await expect(page.locator('.side-by-side')).toContainText('병력이 열세이니');
   await expect(page.locator('.side-by-side')).toContainText('1888년');
-  await expect(page.getByText('당신과 같은 길을 골랐다.')).toBeVisible();
-  await expect(page.locator('.unmask .ent.named').first()).toContainText('Testland');
+  await expect(page.locator('.verdict')).toContainText('방침은 같았다.');
+  await expect(page.locator('.reread .ent.named').first()).toContainText('Testland');
+  // 비교표: 방침 1줄 + 세부 결정 3줄, 사절 돌려보냄(실제 함)과 다름 표시
+  await expect(page.locator('.compare tbody tr')).toHaveCount(4);
+  await expect(page.locator('.compare tbody tr.different')).toHaveCount(1);
+  await expect(page.locator('.timeline li')).toHaveCount(3);
   await expect(page.locator('.tags').first()).toContainText('장기포석');
   await shot(page, '06-reveal');
 
@@ -73,6 +77,18 @@ test('가로 스크롤이 생기지 않는다', async ({ page }) => {
   await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
   await page.goto('./#/play/900');
   await page.getByRole('button', { name: '자문 회의 열기' }).waitFor();
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+});
+
+test('데스크톱 폭에서는 사건 레일이 보이고 가로 스크롤이 없다', async ({ page }) => {
+  await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('./#/play/900');
+  await expect(page.locator('.rail .rail-title')).toBeVisible();
+  await expect(page.locator('.rail .legend')).toBeVisible();
+  await page.getByRole('button', { name: '자문 회의 열기' }).click();
+  await expect(page.locator('.rail').getByRole('status', { name: /남은 질문/ })).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(0);
 });

@@ -1,6 +1,7 @@
 import type { Play } from '../store.ts';
 import type { PublicScenario } from '../types.ts';
 import { h, type Child } from './dom.ts';
+import { tally } from './tally.ts';
 
 export interface PlayCtx {
   scenario: PublicScenario;
@@ -103,16 +104,46 @@ export function keyPanel(scenario: PublicScenario) {
   return h('details', { class: 'key' }, h('summary', null, '기호 풀이'), legend(scenario));
 }
 
+/** 저장소에 커밋된 자체 SVG(빌드 시 복사)만 넣는다 */
+export function svgFigure(svg: string | null, cls = 'map'): HTMLElement | null {
+  if (!svg) return null;
+  const fig = h('figure', { class: cls });
+  fig.innerHTML = svg;
+  return fig;
+}
+
+/** 상황 글과 관계도. 넓은 화면에서는 글 | 그림 두 칸이 된다. */
 export function situation(scenario: PublicScenario, mapSvg: string | null) {
-  const map = mapSvg ? h('figure', { class: 'map' }) : null;
-  if (map) map.innerHTML = mapSvg!; // 저장소에 커밋된 자체 파일(빌드 시 복사)만 넣는다
   return h(
     'div',
     { class: 'situation' },
-    h('p', { class: 'role' }, ...ents(scenario, scenario.masked.role)),
-    ...scenario.masked.situation.flatMap((p) => prose(scenario, p)),
-    map,
-    legend(scenario),
+    h('div', { class: 'situation-text' },
+      h('p', { class: 'role' }, ...ents(scenario, scenario.masked.role)),
+      ...scenario.masked.situation.flatMap((p) => prose(scenario, p)),
+    ),
+    h('div', { class: 'situation-figure' }, svgFigure(mapSvg), legend(scenario)),
+  );
+}
+
+/**
+ * 왼쪽 사건 레일. 넓은 화면에서는 사건 정보·단계·남은 질문·기호표·관계도를 늘 보여 주고,
+ * 좁은 화면에서는 단계 표시만 남는다(나머지는 각 화면 안의 도구가 맡는다).
+ */
+export function caseRail(ctx: PlayCtx): HTMLElement {
+  const { scenario, play } = ctx;
+  const showMap = play.phase !== 'briefing';
+  return h('aside', { class: 'rail', 'aria-label': '사건 요약' },
+    h('div', { class: 'rail-wide' },
+      h('p', { class: 'rail-case' }, `사건 ${scenario.id}`),
+      h('p', { class: 'rail-title' }, scenario.masked.title),
+    ),
+    phaseNav(play.phase),
+    h('div', { class: 'rail-wide' },
+      play.phase === 'inquiry' || play.phase === 'decision' ? tally(play.limit, play.inquiry.opened.length) : null,
+      h('h2', { class: 'rail-h' }, '기호 풀이'),
+      legend(scenario),
+      showMap ? svgFigure(ctx.mapSvg, 'map rail-map') : null,
+    ),
   );
 }
 

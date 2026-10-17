@@ -2,7 +2,7 @@
 // - 선택지를 시나리오 id 시드로 셔플하고 A~D 글자를 붙인다(실제 선택 위치가 판마다 다르게, 빌드마다 같게).
 // - 플레이 중 파일(<id>.json)과 공개 화면 파일(<id>.reveal.json)을 나눈다.
 //   카드 출처는 URL에 실명이 들어가므로 공개 파일로 옮긴다.
-import { copyFileSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { shuffle } from '../src/engine/rng.ts';
 import type { PublicReveal, PublicScenario, ScenarioIndexEntry, Source } from '../src/types.ts';
@@ -30,7 +30,12 @@ for (const { scenario: s, dir } of loadScenarios(src)) {
 
   writeFileSync(join(out, `${s.id}.json`), JSON.stringify(play));
   writeFileSync(join(out, `${s.id}.reveal.json`), JSON.stringify(publicReveal));
-  if (s.masked.map_svg) copyFileSync(join(dir, s.masked.map_svg), join(out, `${s.id}.map.svg`));
+  // 그림 파일은 public/scenarios/<id>/ 아래로. 공개 화면 전용 파일(실제 지도, 인물)은 공개 때만 요청된다.
+  const assets = join(out, s.id);
+  mkdirSync(assets, { recursive: true });
+  if (s.masked.map_svg) copyFileSync(join(dir, s.masked.map_svg), join(assets, 'map.svg'));
+  if (reveal.map_svg) copyFileSync(join(dir, reveal.map_svg), join(assets, 'reveal-map.svg'));
+  if (existsSync(join(dir, 'figures'))) cpSync(join(dir, 'figures'), join(assets, 'figures'), { recursive: true });
   index.push({ id: s.id, title: s.masked.title });
   console.log(`${s.id}: 선택지 순서 ${options.map((o) => `${o.letter}=${o.key}`).join(', ')}`);
 }

@@ -1,0 +1,119 @@
+{
+  "$comment": "에피소드 템플릿. docs/EPISODE_GUIDE.md의 규격을 따른다. 모든 TODO를 채우고 이 $comment를 바꾼다. 폴더 이름과 id가 같아야 한다.",
+  "id": "002",
+  "masked": {
+    "title": "TODO 장면 제목(10자 안팎, 고유명 금지)",
+    "role": "TODO 당신은 <설명> A의 <직책>이다. <결정자의 처지 한 줄>.",
+    "situation": [
+      "TODO 지금까지의 경과. 세력은 '제국 B', '섬나라 C'처럼 설명과 함께 처음 소개한다.",
+      "TODO 지금의 위기.",
+      "TODO 시간이 없다는 압박."
+    ],
+    "map_svg": "map.svg",
+    "entities": [
+      { "id": "A", "label": "TODO 플레이어의 나라 설명", "self": true },
+      { "id": "B", "label": "TODO 4~12자 설명" },
+      { "id": "C", "label": "TODO" }
+    ],
+    "options": [
+      { "key": "actual_choice_key", "text": "TODO 실제 선택" },
+      { "key": "alternative_1", "text": "TODO 그럴듯한 대안" },
+      { "key": "alternative_2", "text": "TODO" },
+      { "key": "alternative_3", "text": "TODO" }
+    ],
+    "decisions": [
+      { "id": "decision_1", "group": "TODO 묶음 이름", "label": "TODO 구체적 행동" },
+      { "id": "decision_2", "group": "TODO", "label": "TODO" },
+      { "id": "decision_3", "group": "TODO", "label": "TODO" },
+      { "id": "decision_4", "group": "TODO", "label": "TODO" },
+      { "id": "decision_5", "group": "TODO", "label": "TODO" },
+      { "id": "decision_6", "group": "TODO", "label": "TODO" }
+    ],
+    "inquiry_limit": 6
+  },
+  "dossier": [
+    {
+      "id": "c01",
+      "advisor": "general",
+      "topic": "military",
+      "title": "TODO 6~10자",
+      "text": "TODO 2~4문장, 합쇼체.",
+      "reliability": 0.9,
+      "sources": [{ "title": "TODO 출처 제목", "url": "https://TODO" }]
+    },
+    {
+      "id": "c02",
+      "advisor": "spymaster",
+      "topic": "enemy",
+      "title": "TODO",
+      "text": "TODO 사실 보고",
+      "reliability": 0.6,
+      "misreport": "TODO 당시 돌 법했던 잘못된 보고 (2~3장에만)",
+      "sources": [{ "title": "TODO", "url": "https://TODO" }]
+    }
+  ],
+  "pushbacks": [
+    {
+      "id": "p_example",
+      "when": { "option": ["actual_choice_key"], "none": ["decision_1"] },
+      "advisor": "chamberlain",
+      "title": "TODO 4~8자",
+      "text": "TODO 1~3문장, 합쇼체. 플레이어가 놓친 2차 문제."
+    }
+  ],
+  "tags": {
+    "options": {
+      "actual_choice_key": ["장기포석", "변혁"],
+      "alternative_1": ["위험회피"],
+      "alternative_2": ["위험선호"],
+      "alternative_3": ["현상유지"]
+    },
+    "decisions": { "decision_1": ["실리"] }
+  },
+  "reveal": {
+    "who": "TODO 누가, 언제, 어디서",
+    "identities": [
+      { "entity": "A", "name": "TODO 짧은 실명" },
+      { "entity": "B", "name": "TODO" },
+      { "entity": "C", "name": "TODO" }
+    ],
+    "redact": ["TODO 실명", "TODO 원어 표기", "TODO 지명", "TODO 사건 이름"],
+    "actual_choice": "actual_choice_key",
+    "decisions": {
+      "decision_1": { "did": true, "note": "TODO 60자 이하" },
+      "decision_2": { "did": false, "note": "TODO" },
+      "decision_3": { "did": null, "note": "TODO 기록 없음/출처 충돌 이유" },
+      "decision_4": { "did": null, "note": "TODO" },
+      "decision_5": { "did": null, "note": "TODO" },
+      "decision_6": { "did": null, "note": "TODO" }
+    },
+    "summary_points": ["TODO 70자 이하", "TODO"],
+    "actual_reasoning": "TODO 긴 서술(2~5문단). 해석이 갈리면 갈린다고 쓴다.",
+    "timeline": [
+      { "when": "TODO 연도/월/일", "text": "TODO 80자 이하" },
+      { "when": "TODO", "text": "TODO" },
+      { "when": "TODO", "text": "TODO" },
+      { "when": "TODO", "text": "TODO" }
+    ],
+    "figures": [
+      {
+        "name": "TODO 결정자",
+        "role": "TODO 직책, 이 판의 결정자",
+        "image": "decider.jpg",
+        "caption": "TODO 작가, 작품명, 연도",
+        "credit": "TODO 작가, Wikimedia Commons",
+        "license": "퍼블릭 도메인",
+        "source_url": "https://commons.wikimedia.org/wiki/File:TODO"
+      }
+    ],
+    "map_svg": "reveal-map.svg",
+    "outcome": "TODO 결과 서술(3~6문단).",
+    "counterfactuals": [
+      { "option": "alternative_1", "text": "TODO 추정임이 드러나게, 근거와 함께." },
+      { "option": "alternative_2", "text": "TODO" },
+      { "option": "alternative_3", "text": "TODO" }
+    ],
+    "misreport_notes": "TODO 오보 카드와 실제",
+    "sources": [{ "title": "TODO", "url": "https://TODO" }]
+  }
+}

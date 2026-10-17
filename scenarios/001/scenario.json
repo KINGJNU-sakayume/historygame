@@ -13,257 +13,751 @@
     ],
     "map_svg": "map.svg",
     "entities": [
-      { "id": "A", "label": "해안 소국", "self": true },
-      { "id": "B", "label": "대륙의 제국" },
-      { "id": "C", "label": "바다를 쥔 섬나라" },
-      { "id": "D", "label": "B와 손잡은 이웃 왕국" },
-      { "id": "E", "label": "대양 너머의 식민지" },
-      { "id": "F", "label": "B와 손잡은 북방 제국" }
+      {
+        "id": "A",
+        "label": "해안 소국",
+        "self": true
+      },
+      {
+        "id": "B",
+        "label": "대륙의 제국"
+      },
+      {
+        "id": "C",
+        "label": "바다를 쥔 섬나라"
+      },
+      {
+        "id": "D",
+        "label": "B와 손잡은 이웃 왕국"
+      },
+      {
+        "id": "E",
+        "label": "대양 너머의 식민지"
+      },
+      {
+        "id": "F",
+        "label": "B와 손잡은 북방 제국"
+      }
     ],
     "options": [
-      { "key": "submit", "text": "B의 요구를 모두 받아들인다. 왕실은 수도에 남아 B의 군대를 맞고, 함대의 처분도 B의 뜻에 맡긴다." },
-      { "key": "resist", "text": "군대와 민병을 모아 수도를 지키고, C에 육군 지원을 청한다." },
-      { "key": "relocate", "text": "왕실과 정부, 함대를 이끌고 C 함대의 호위를 받아 대양 너머 E로 옮긴다." },
-      { "key": "stall", "text": "진군하는 B의 장군에게 복종과 공물을 약속하며 시간을 번다. 왕실은 수도에 남고 함대는 항구에 둔다." }
+      {
+        "key": "submit",
+        "text": "B의 요구를 모두 받아들인다. 왕실은 수도에 남아 B의 군대를 맞고, 함대의 처분도 B의 뜻에 맡긴다."
+      },
+      {
+        "key": "resist",
+        "text": "군대와 민병을 모아 수도를 지키고, C에 육군 지원을 청한다."
+      },
+      {
+        "key": "relocate",
+        "text": "왕실과 정부, 함대를 이끌고 C 함대의 호위를 받아 대양 너머 E로 옮긴다."
+      },
+      {
+        "key": "stall",
+        "text": "진군하는 B의 장군에게 복종과 공물을 약속하며 시간을 번다. 왕실은 수도에 남고 함대는 항구에 둔다."
+      }
     ],
     "decisions": [
-      { "id": "fleet_take", "group": "함대", "label": "출항할 수 있는 군함을 모두 움직인다" },
-      { "id": "fleet_disable", "group": "함대", "label": "출항하지 못하는 배와 강어귀 포대를 쓸 수 없게 만든다" },
-      { "id": "regency_council", "group": "본국 통치", "label": "남는 본국을 다스릴 섭정 위원회를 세운다" },
-      { "id": "proclamation", "group": "본국 통치", "label": "백성에게 결정의 이유를 밝히는 포고문을 낸다" },
-      { "id": "treasury", "group": "재정", "label": "국고와 주화를 배에 싣는다" },
-      { "id": "militia", "group": "군사", "label": "민병대를 소집한다" },
-      { "id": "envoy_general", "group": "외교", "label": "진군 중인 B의 장군에게 사절을 보낸다" },
-      { "id": "release_merchants", "group": "외교", "label": "억류한 C 상인들을 풀어 준다" }
+      {
+        "id": "fleet_take",
+        "group": "함대",
+        "label": "출항할 수 있는 군함을 모두 움직인다"
+      },
+      {
+        "id": "fleet_disable",
+        "group": "함대",
+        "label": "출항하지 못하는 배와 강어귀 포대를 쓸 수 없게 만든다"
+      },
+      {
+        "id": "regency_council",
+        "group": "본국 통치",
+        "label": "남는 본국을 다스릴 섭정 위원회를 세운다"
+      },
+      {
+        "id": "proclamation",
+        "group": "본국 통치",
+        "label": "백성에게 결정의 이유를 밝히는 포고문을 낸다"
+      },
+      {
+        "id": "treasury",
+        "group": "재정",
+        "label": "국고와 주화를 배에 싣는다"
+      },
+      {
+        "id": "militia",
+        "group": "군사",
+        "label": "민병대를 소집한다"
+      },
+      {
+        "id": "envoy_general",
+        "group": "외교",
+        "label": "진군 중인 B의 장군에게 사절을 보낸다"
+      },
+      {
+        "id": "release_merchants",
+        "group": "외교",
+        "label": "억류한 C 상인들을 풀어 준다"
+      }
     ],
     "inquiry_limit": 6
   },
   "dossier": [
     {
-      "id": "c01", "advisor": "general", "topic": "military", "title": "우리 군대",
+      "id": "c01",
+      "advisor": "general",
+      "topic": "military",
+      "title": "우리 군대",
       "text": "장부상 정규군은 3만가량입니다. 그러나 오래 돌보지 않아 제 구실을 할지 장담할 수 없습니다. 지난 전쟁들에서 쓸모가 있었던 민병대는 아직 소집 논의조차 없습니다.",
       "reliability": 0.9,
-      "sources": [{ "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II", "url": "https://www.gutenberg.org/ebooks/53264" }]
+      "sources": [
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        }
+      ]
     },
     {
-      "id": "c02", "advisor": "general", "topic": "military", "title": "적의 병력",
+      "id": "c02",
+      "advisor": "general",
+      "topic": "military",
+      "title": "적의 병력",
       "text": "국경을 넘은 B군은 2만5천가량입니다. D의 보조 사단들도 북쪽과 남쪽으로 들어올 채비를 하고 있습니다.",
       "reliability": 0.75,
       "misreport": "국경을 넘은 B군은 6만이 넘는다고 합니다. 이미 수도 근교에 기병이 보였다는 말도 있습니다.",
       "sources": [
-        { "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II", "url": "https://www.gutenberg.org/ebooks/53264" },
-        { "title": "Encyclopædia Britannica (1911), Portugal", "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal" },
-        { "title": "Fondation Napoléon, 1807-1808 : Campagne du Portugal", "url": "https://www.napoleon.org/histoire-des-2-empires/chronologies/1807-1808-campagne-du-portugal-en-route-vers-lespagne/" }
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        },
+        {
+          "title": "Encyclopædia Britannica (1911), Portugal",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal"
+        },
+        {
+          "title": "Fondation Napoléon, 1807-1808 : Campagne du Portugal",
+          "url": "https://www.napoleon.org/histoire-des-2-empires/chronologies/1807-1808-campagne-du-portugal-en-route-vers-lespagne/"
+        }
       ]
     },
     {
-      "id": "c03", "advisor": "general", "topic": "geography", "title": "적의 진격로",
+      "id": "c03",
+      "advisor": "general",
+      "topic": "geography",
+      "title": "적의 진격로",
       "text": "적은 요새가 버티는 평소의 침입로를 버리고, 큰 강을 따라 내려오는 짧은 길을 택했습니다. 그 길의 절반은 사람이 거의 살지 않는 바위 협곡입니다. 선봉이 닿은 강변 도시에서 수도까지는 120km 남짓입니다.",
       "reliability": 1,
-      "sources": [{ "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II", "url": "https://www.gutenberg.org/ebooks/53264" }]
+      "sources": [
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        }
+      ]
     },
     {
-      "id": "c04", "advisor": "spymaster", "topic": "military", "title": "적 선봉의 상태",
+      "id": "c04",
+      "advisor": "spymaster",
+      "topic": "military",
+      "title": "적 선봉의 상태",
       "text": "비 내리는 산길을 강행군하느라 적은 말의 절반을 잃었고, 대포는 거의 다 뒤에 처졌습니다. 보병 상당수가 먹을 것을 찾아 흩어졌고 탄약은 비에 젖었다고 합니다.",
       "reliability": 0.6,
       "misreport": "적 선봉은 대포와 기병을 갖추고 질서 있게 행군 중입니다. 보급도 D가 마련해 둔 창고에서 넉넉히 받고 있습니다.",
-      "sources": [{ "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II", "url": "https://www.gutenberg.org/ebooks/53264" }]
-    },
-    {
-      "id": "c05", "advisor": "spymaster", "topic": "military", "title": "항구의 손님",
-      "text": "B와 손잡은 북방 제국 F의 함대가 귀국길에 우리 강에 들어와 정박해 있습니다. 적군이 다가오는 때와 맞물려 들어온 것이 수상합니다.",
-      "reliability": 1,
-      "sources": [{ "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II", "url": "https://www.gutenberg.org/ebooks/53264" }]
-    },
-    {
-      "id": "c06", "advisor": "foreign", "topic": "ally", "title": "강어귀의 C 함대",
-      "text": "C 함대가 강어귀 봉쇄를 선언했습니다. 우리가 항구를 닫고 상인을 억류한 데 대한 응답입니다. C의 대사는 기함에서 문서를 보내오고 있습니다. C가 가장 두려워하는 것은 우리 함대가 B의 손에 넘어가는 일입니다.",
-      "reliability": 0.9,
       "sources": [
-        { "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II", "url": "https://www.gutenberg.org/ebooks/53264" },
-        { "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)", "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/" }
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        }
       ]
     },
     {
-      "id": "c07", "advisor": "foreign", "topic": "ally", "title": "북쪽 중립국의 전례",
+      "id": "c05",
+      "advisor": "spymaster",
+      "topic": "military",
+      "title": "항구의 손님",
+      "text": "B와 손잡은 북방 제국 F의 함대가 귀국길에 우리 강에 들어와 정박해 있습니다. 적군이 다가오는 때와 맞물려 들어온 것이 수상합니다.",
+      "reliability": 1,
+      "sources": [
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        }
+      ]
+    },
+    {
+      "id": "c06",
+      "advisor": "foreign",
+      "topic": "ally",
+      "title": "강어귀의 C 함대",
+      "text": "C 함대가 강어귀 봉쇄를 선언했습니다. 우리가 항구를 닫고 상인을 억류한 데 대한 응답입니다. C의 대사는 기함에서 문서를 보내오고 있습니다. C가 가장 두려워하는 것은 우리 함대가 B의 손에 넘어가는 일입니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        },
+        {
+          "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)",
+          "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/"
+        }
+      ]
+    },
+    {
+      "id": "c07",
+      "advisor": "foreign",
+      "topic": "ally",
+      "title": "북쪽 중립국의 전례",
       "text": "몇 달 전 C는 북쪽의 한 중립국이 B 편에 설까 염려해, 그 수도를 닷새 동안 포격하고 함대를 거두어 갔습니다. C의 의회 안에서도 부당하다는 비판이 있었지만 일은 이미 끝났습니다.",
       "reliability": 1,
-      "sources": [{ "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)", "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/" }]
+      "sources": [
+        {
+          "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)",
+          "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/"
+        }
+      ]
     },
     {
-      "id": "c08", "advisor": "spymaster", "topic": "ally", "title": "C 내각의 속셈",
+      "id": "c08",
+      "advisor": "spymaster",
+      "topic": "ally",
+      "title": "C 내각의 속셈",
       "text": "C 내각이 우리 함대 문제를 걱정한 끝에, 대서양에 있는 우리 섬 하나를 점령할 계획을 세웠다는 첩보입니다.",
       "reliability": 0.7,
-      "sources": [{ "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)", "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/" }]
+      "sources": [
+        {
+          "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)",
+          "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/"
+        }
+      ]
     },
     {
-      "id": "c09", "advisor": "spymaster", "topic": "enemy", "title": "비밀 조약",
+      "id": "c09",
+      "advisor": "spymaster",
+      "topic": "enemy",
+      "title": "비밀 조약",
       "text": "B와 D가 우리나라를 셋으로 나누는 비밀 조약을 맺었다는 첩보입니다. 북부는 B가 옛 영지에서 내쫓는 다른 왕가에게, 남부는 D의 실권자인 재상에게, 수도와 나머지는 전쟁이 끝날 때까지 B가 맡는다고 합니다. 우리 왕가를 어찌할지는 두 나라가 나중에 정한답니다.",
       "reliability": 0.8,
       "misreport": "D의 공사는 떠나기 전에, B가 바라는 것은 항구 폐쇄뿐이며 영토 욕심은 없다고 장담했습니다.",
       "sources": [
-        { "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. I", "url": "https://www.gutenberg.org/ebooks/53264" },
-        { "title": "Encyclopædia Britannica (1911), Portugal", "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal" },
-        { "title": "Fondation Napoléon, 1807-1808 : Campagne du Portugal", "url": "https://www.napoleon.org/histoire-des-2-empires/chronologies/1807-1808-campagne-du-portugal-en-route-vers-lespagne/" }
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. I",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        },
+        {
+          "title": "Encyclopædia Britannica (1911), Portugal",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal"
+        },
+        {
+          "title": "Fondation Napoléon, 1807-1808 : Campagne du Portugal",
+          "url": "https://www.napoleon.org/histoire-des-2-empires/chronologies/1807-1808-campagne-du-portugal-en-route-vers-lespagne/"
+        }
       ]
     },
     {
-      "id": "c10", "advisor": "spymaster", "topic": "enemy", "title": "B의 관보",
+      "id": "c10",
+      "advisor": "spymaster",
+      "topic": "enemy",
+      "title": "B의 관보",
       "text": "C의 대사가 B의 관보 한 부를 넘겨 왔습니다. 황제의 이름으로 '이 왕가는 유럽에서 통치를 그쳤다'고 선언하는 글이 실려 있습니다.",
       "reliability": 1,
       "sources": [
-        { "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II", "url": "https://www.gutenberg.org/ebooks/53264" },
-        { "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)", "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/" }
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        },
+        {
+          "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)",
+          "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/"
+        }
       ]
     },
     {
-      "id": "c11", "advisor": "foreign", "topic": "enemy", "title": "남쪽 반도 왕가의 운명",
+      "id": "c11",
+      "advisor": "foreign",
+      "topic": "enemy",
+      "title": "남쪽 반도 왕가의 운명",
       "text": "B의 황제는 지난해 남쪽 반도의 한 오랜 왕가를 대륙에서 몰아내고, 그 왕좌를 자기 형에게 주었습니다. 다른 작은 나라들도 황제의 친족에게 돌아갔습니다.",
       "reliability": 1,
-      "sources": [{ "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. I", "url": "https://www.gutenberg.org/ebooks/53264" }]
+      "sources": [
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. I",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        }
+      ]
     },
     {
-      "id": "c12", "advisor": "finance", "topic": "finance", "title": "교역",
+      "id": "c12",
+      "advisor": "finance",
+      "topic": "finance",
+      "title": "교역",
       "text": "C는 우리 포도주와 곡물의 가장 큰 시장입니다. 그리고 우리의 긴 해안은 C 해군 앞에 무방비입니다. 항구를 닫으면 포도주를 팔 곳이 없어지고, E로 가는 물건도 묶입니다.",
       "reliability": 0.9,
       "sources": [
-        { "title": "Encyclopædia Britannica (1911), Portugal", "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal" },
-        { "title": "Oman, A History of the Peninsular War, vol. 1, Section IV ch. I", "url": "https://www.gutenberg.org/ebooks/53264" }
+        {
+          "title": "Encyclopædia Britannica (1911), Portugal",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal"
+        },
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section IV ch. I",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        }
       ]
     },
     {
-      "id": "c13", "advisor": "finance", "topic": "geography", "title": "대양 너머의 E",
+      "id": "c13",
+      "advisor": "finance",
+      "topic": "geography",
+      "title": "대양 너머의 E",
       "text": "E는 우리의 가장 큰 식민지입니다. 금광과 다이아몬드가 나오고, 땅은 본국보다 비할 수 없이 넓습니다.",
       "reliability": 1,
       "sources": [
-        { "title": "Encyclopædia Britannica (1911), Brazil", "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Brazil" },
-        { "title": "Fondation Napoléon, 1807-1808 : Campagne du Portugal", "url": "https://www.napoleon.org/histoire-des-2-empires/chronologies/1807-1808-campagne-du-portugal-en-route-vers-lespagne/" }
+        {
+          "title": "Encyclopædia Britannica (1911), Brazil",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Brazil"
+        },
+        {
+          "title": "Fondation Napoléon, 1807-1808 : Campagne du Portugal",
+          "url": "https://www.napoleon.org/histoire-des-2-empires/chronologies/1807-1808-campagne-du-portugal-en-route-vers-lespagne/"
+        }
       ]
     },
     {
-      "id": "c14", "advisor": "finance", "topic": "finance", "title": "여섯 해 전의 값",
+      "id": "c14",
+      "advisor": "finance",
+      "topic": "finance",
+      "title": "여섯 해 전의 값",
       "text": "여섯 해 전에도 B의 요구를 거절했다가 B와 D의 군대에 침공당했습니다. 몇 달 만에 강화를 맺으면서 국경 요새 하나를 D에 넘기고, B에 막대한 배상금을 물고, C의 배를 항구에서 내쫓겠다고 약속해야 했습니다.",
       "reliability": 1,
-      "sources": [{ "title": "Encyclopædia Britannica (1911), Portugal", "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal" }]
+      "sources": [
+        {
+          "title": "Encyclopædia Britannica (1911), Portugal",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal"
+        }
+      ]
     },
     {
-      "id": "c15", "advisor": "chamberlain", "topic": "lineage", "title": "왕비의 친정",
+      "id": "c15",
+      "advisor": "chamberlain",
+      "topic": "lineage",
+      "title": "왕비의 친정",
       "text": "전하의 부인께서는 D 국왕의 따님이십니다. D 왕실은 지금 B의 동맹이고, D의 재상은 B와 손을 잡고 있습니다.",
       "reliability": 1,
       "sources": [
-        { "title": "Encyclopædia Britannica (1911), Portugal", "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal" },
-        { "title": "Archive.org — Justa reclamacion (Carlota Joaquina 명의 문서) 서지", "url": "https://archive.org/details/justareclamacion00carl" }
+        {
+          "title": "Encyclopædia Britannica (1911), Portugal",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal"
+        },
+        {
+          "title": "Archive.org — Justa reclamacion (Carlota Joaquina 명의 문서) 서지",
+          "url": "https://archive.org/details/justareclamacion00carl"
+        }
       ]
     },
     {
-      "id": "c16", "advisor": "chamberlain", "topic": "opinion", "title": "궁정의 공기",
+      "id": "c16",
+      "advisor": "chamberlain",
+      "topic": "opinion",
+      "title": "궁정의 공기",
       "text": "대신과 장군들 가운데 싸우자고 아뢰는 이는 거의 없습니다. 궁정은 B를 달랠 방도만 찾고 있습니다. 거리의 백성들 속내는 아직 알 수 없습니다.",
       "reliability": 0.9,
-      "sources": [{ "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II", "url": "https://www.gutenberg.org/ebooks/53264" }]
+      "sources": [
+        {
+          "title": "Oman, A History of the Peninsular War, vol. 1, Section I ch. II",
+          "url": "https://www.gutenberg.org/ebooks/53264"
+        }
+      ]
     }
   ],
   "pushbacks": [
     {
-      "id": "p_relocate_regency", "when": { "option": ["relocate"], "none": ["regency_council"] },
-      "advisor": "chamberlain", "title": "빈 왕좌",
+      "id": "p_relocate_regency",
+      "when": {
+        "option": [
+          "relocate"
+        ],
+        "none": [
+          "regency_council"
+        ]
+      },
+      "advisor": "chamberlain",
+      "title": "빈 왕좌",
       "text": "전하께서 떠나시면 본국은 누가 다스립니까? 통치할 사람을 정해 두지 않으면, B가 '이 왕가는 끝났다'고 한 말이 그대로 사실이 됩니다."
     },
     {
-      "id": "p_relocate_treasury", "when": { "option": ["relocate"], "none": ["treasury"] },
-      "advisor": "finance", "title": "빈손의 정부",
+      "id": "p_relocate_treasury",
+      "when": {
+        "option": [
+          "relocate"
+        ],
+        "none": [
+          "treasury"
+        ]
+      },
+      "advisor": "finance",
+      "title": "빈손의 정부",
       "text": "대양 건너 새 수도에서 관리와 군대의 봉급은 무엇으로 줍니까? 국고를 두고 가면 그것은 B의 장군이 거둬 갈 것입니다."
     },
     {
-      "id": "p_relocate_fleet", "when": { "option": ["relocate"], "none": ["fleet_take"] },
-      "advisor": "general", "title": "남겨진 함대",
+      "id": "p_relocate_fleet",
+      "when": {
+        "option": [
+          "relocate"
+        ],
+        "none": [
+          "fleet_take"
+        ]
+      },
+      "advisor": "general",
+      "title": "남겨진 함대",
       "text": "왕실만 몇 척에 태우고 함대를 남겨 두면, 그 배들은 B의 것이 됩니다. 북쪽 중립국의 함대가 어찌 되었는지 기억하십시오. 강어귀의 C 함대가 그것을 가만히 보고 있겠습니까?"
     },
     {
-      "id": "p_relocate_militia", "when": { "option": ["relocate"], "all": ["militia"] },
-      "advisor": "general", "title": "누구를 위한 민병인가",
+      "id": "p_relocate_militia",
+      "when": {
+        "option": [
+          "relocate"
+        ],
+        "all": [
+          "militia"
+        ]
+      },
+      "advisor": "general",
+      "title": "누구를 위한 민병인가",
       "text": "민병을 불러 모아 놓고 왕실이 떠나면, 그들은 누구의 깃발 아래 싸웁니까? 무기를 든 채 버려졌다고 여길 것입니다."
     },
     {
-      "id": "p_relocate_people", "when": { "option": ["relocate"], "none": ["proclamation"] },
-      "advisor": "chamberlain", "title": "남는 백성",
+      "id": "p_relocate_people",
+      "when": {
+        "option": [
+          "relocate"
+        ],
+        "none": [
+          "proclamation"
+        ]
+      },
+      "advisor": "chamberlain",
+      "title": "남는 백성",
       "text": "궁정과 귀족이 배에 오르는 것을 백성들은 강가에서 지켜볼 것입니다. 아무 말 없이 떠나면, 그들은 이것을 도망이라 부를 것입니다."
     },
     {
-      "id": "p_resist_militia", "when": { "option": ["resist"], "none": ["militia"] },
-      "advisor": "general", "title": "장부 위의 군대",
+      "id": "p_resist_militia",
+      "when": {
+        "option": [
+          "resist"
+        ],
+        "none": [
+          "militia"
+        ]
+      },
+      "advisor": "general",
+      "title": "장부 위의 군대",
       "text": "3만이라는 정규군은 장부 위의 숫자입니다. 민병도 부르지 않고 무엇으로 수도를 지키겠습니까?"
     },
     {
-      "id": "p_resist_c", "when": { "option": ["resist"] },
-      "advisor": "foreign", "title": "바다만 지키는 동맹",
+      "id": "p_resist_c",
+      "when": {
+        "option": [
+          "resist"
+        ]
+      },
+      "advisor": "foreign",
+      "title": "바다만 지키는 동맹",
       "text": "C의 함대는 강어귀에 있지만, C의 육군이 오고 있다는 소식은 없습니다. C가 우리 땅에서 함께 싸워 줄지는 아무것도 약속받지 못했습니다. 게다가 우리는 방금 C 상인들을 억류했습니다."
     },
     {
-      "id": "p_submit_partition", "when": { "option": ["submit", "stall"] },
-      "advisor": "spymaster", "title": "복종 뒤의 왕좌",
+      "id": "p_submit_partition",
+      "when": {
+        "option": [
+          "submit",
+          "stall"
+        ]
+      },
+      "advisor": "spymaster",
+      "title": "복종 뒤의 왕좌",
       "text": "B와 D가 이미 우리 땅을 나눌 계획을 세웠다면, 복종한다고 왕좌가 남겠습니까? 남쪽 반도의 왕가가 어찌 되었는지 보십시오."
     },
     {
-      "id": "p_submit_fleet", "when": { "option": ["submit"] },
-      "advisor": "foreign", "title": "강어귀의 대포",
+      "id": "p_submit_fleet",
+      "when": {
+        "option": [
+          "submit"
+        ]
+      },
+      "advisor": "foreign",
+      "title": "강어귀의 대포",
       "text": "함대를 B의 뜻에 맡기겠다고 하는 순간, 강어귀의 C 함대는 우리를 적으로 볼 것입니다. 북쪽 중립국의 수도가 닷새 동안 무엇을 겪었는지 잊지 마십시오."
     },
     {
-      "id": "p_stall_time", "when": { "option": ["stall"] },
-      "advisor": "spymaster", "title": "기다려 주지 않는 장군",
+      "id": "p_stall_time",
+      "when": {
+        "option": [
+          "stall"
+        ]
+      },
+      "advisor": "spymaster",
+      "title": "기다려 주지 않는 장군",
       "text": "B의 장군은 하루도 지체하지 말라는 명을 받았다고 합니다. 그가 협상하자고 걸음을 멈출 까닭이 무엇입니까? 시간을 버는 동안 강어귀의 C 함대도 기다려 주지 않을 것입니다."
     },
     {
-      "id": "p_release_mixed", "when": { "option": ["submit", "stall"], "all": ["release_merchants"] },
-      "advisor": "foreign", "title": "두 주인",
+      "id": "p_release_mixed",
+      "when": {
+        "option": [
+          "submit",
+          "stall"
+        ],
+        "all": [
+          "release_merchants"
+        ]
+      },
+      "advisor": "foreign",
+      "title": "두 주인",
       "text": "B에게 복종을 약속하면서 C 상인들을 풀어 주면, B는 그것을 배신의 증거로 삼을 것입니다. 둘 다 달래려다 둘 다 잃습니다."
     }
   ],
   "tags": {
     "options": {
-      "submit": ["위험회피", "현상유지", "단기수습"],
-      "resist": ["위험선호", "명분", "자주"],
-      "relocate": ["동맹신뢰", "변혁", "장기포석"],
-      "stall": ["위험회피", "현상유지", "단기수습"]
+      "submit": [
+        "위험회피",
+        "현상유지",
+        "단기수습"
+      ],
+      "resist": [
+        "위험선호",
+        "명분",
+        "자주"
+      ],
+      "relocate": [
+        "동맹신뢰",
+        "변혁",
+        "장기포석"
+      ],
+      "stall": [
+        "위험회피",
+        "현상유지",
+        "단기수습"
+      ]
     },
     "decisions": {
-      "militia": ["위험선호", "자주"],
-      "release_merchants": ["동맹신뢰"],
-      "proclamation": ["명분"],
-      "treasury": ["실리"],
-      "regency_council": ["장기포석"],
-      "fleet_disable": ["실리"],
-      "envoy_general": ["위험회피"]
+      "militia": [
+        "위험선호",
+        "자주"
+      ],
+      "release_merchants": [
+        "동맹신뢰"
+      ],
+      "proclamation": [
+        "명분"
+      ],
+      "treasury": [
+        "실리"
+      ],
+      "regency_council": [
+        "장기포석"
+      ],
+      "fleet_disable": [
+        "실리"
+      ],
+      "envoy_general": [
+        "위험회피"
+      ]
     }
   },
   "reveal": {
     "who": "포르투갈의 섭정 동 주앙(훗날 주앙 6세), 1807년 11월 리스본",
     "identities": [
-      { "entity": "A", "name": "포르투갈" },
-      { "entity": "B", "name": "프랑스" },
-      { "entity": "C", "name": "영국" },
-      { "entity": "D", "name": "스페인" },
-      { "entity": "E", "name": "브라질" },
-      { "entity": "F", "name": "러시아" }
+      {
+        "entity": "A",
+        "name": "포르투갈"
+      },
+      {
+        "entity": "B",
+        "name": "프랑스"
+      },
+      {
+        "entity": "C",
+        "name": "영국"
+      },
+      {
+        "entity": "D",
+        "name": "스페인"
+      },
+      {
+        "entity": "E",
+        "name": "브라질"
+      },
+      {
+        "entity": "F",
+        "name": "러시아"
+      }
     ],
     "redact": [
-      "Portugal", "Portuguese", "Lisboa", "Lisbon", "리스본", "Tejo", "Tagus", "테주",
-      "João", "주앙", "Bragança", "Braganza", "브라간사",
-      "Napoleon", "Napoléon", "Bonaparte", "보나파르트", "Junot", "쥐노",
-      "France", "French", "프랑스", "프랑",
-      "Britain", "British", "England", "English", "잉글랜드",
-      "Spain", "Spanish", "España", "스페인", "Brazil", "Brasil",
-      "Rio de Janeiro", "리우", "Bahia", "바이아", "Madeira", "마데이라",
-      "Copenhagen", "코펜하겐", "Denmark", "덴마크", "Danish",
-      "Russia", "Russian", "러시아", "Naples", "나폴리", "Fontainebleau", "퐁텐블로",
-      "Godoy", "고도이", "Carlota", "카를로타", "Strangford", "스트랭퍼드",
-      "Sidney Smith", "Sydney Smith", "시드니 스미스", "Abrantes", "아브란트스",
-      "Olivenza", "올리벤사", "Moniteur", "모니퇴르", "Etruria", "에트루리아",
-      "Wellesley", "Wellington", "웰링턴", "Beresford", "베레스퍼드"
+      "Portugal",
+      "Portuguese",
+      "Lisboa",
+      "Lisbon",
+      "리스본",
+      "Tejo",
+      "Tagus",
+      "테주",
+      "João",
+      "주앙",
+      "Bragança",
+      "Braganza",
+      "브라간사",
+      "Napoleon",
+      "Napoléon",
+      "Bonaparte",
+      "보나파르트",
+      "Junot",
+      "쥐노",
+      "France",
+      "French",
+      "프랑스",
+      "프랑",
+      "Britain",
+      "British",
+      "England",
+      "English",
+      "잉글랜드",
+      "Spain",
+      "Spanish",
+      "España",
+      "스페인",
+      "Brazil",
+      "Brasil",
+      "Rio de Janeiro",
+      "리우",
+      "Bahia",
+      "바이아",
+      "Madeira",
+      "마데이라",
+      "Copenhagen",
+      "코펜하겐",
+      "Denmark",
+      "덴마크",
+      "Danish",
+      "Russia",
+      "Russian",
+      "러시아",
+      "Naples",
+      "나폴리",
+      "Fontainebleau",
+      "퐁텐블로",
+      "Godoy",
+      "고도이",
+      "Carlota",
+      "카를로타",
+      "Strangford",
+      "스트랭퍼드",
+      "Sidney Smith",
+      "Sydney Smith",
+      "시드니 스미스",
+      "Abrantes",
+      "아브란트스",
+      "Olivenza",
+      "올리벤사",
+      "Moniteur",
+      "모니퇴르",
+      "Etruria",
+      "에트루리아",
+      "Wellesley",
+      "Wellington",
+      "웰링턴",
+      "Beresford",
+      "베레스퍼드"
     ],
     "actual_choice": "relocate",
-    "actual_details": ["fleet_take", "treasury", "regency_council", "envoy_general"],
+    "decisions": {
+      "fleet_take": {
+        "did": true,
+        "note": "출항할 수 있는 군함을 거의 모두 데려갔다"
+      },
+      "fleet_disable": {
+        "did": null,
+        "note": "포대를 못 쓰게 했다는 기록과 지켰다는 기록이 엇갈린다"
+      },
+      "regency_council": {
+        "did": true,
+        "note": "떠나기 전 섭정 위원회를 세워 본국을 맡겼다"
+      },
+      "proclamation": {
+        "did": null,
+        "note": "포고문이 있었다는 기록은 아직 교차 확인하지 못했다"
+      },
+      "treasury": {
+        "did": true,
+        "note": "국고와 국가 문서를 배에 실었다"
+      },
+      "militia": {
+        "did": false,
+        "note": "민병 소집은 논의조차 되지 않았다"
+      },
+      "envoy_general": {
+        "did": true,
+        "note": "진군하던 프랑스 장군에게 복종과 공물을 제안하는 사절을 보냈다"
+      },
+      "release_merchants": {
+        "did": null,
+        "note": "억류한 영국 상인을 풀어 줬다는 기록은 찾지 못했다"
+      }
+    },
+    "summary_points": [
+      "굴복해도 왕좌가 남지 않는다: 나폴레옹이 '이 왕가는 끝났다'고 선언했다",
+      "함대가 프랑스 손에 들어가면 영국과도 적이 된다",
+      "본국을 잃어도 브라질에서 왕조와 제국은 지킬 수 있다"
+    ],
     "actual_reasoning": "섭정은 끝까지 망설였다. 1902년 영국 역사가 Oman은 그가 나폴레옹에게 더 굴복하는 길과 브라질로 건너가는 길 사이에서 오래 흔들렸고, 남았다가는 프랑스 어느 성의 포로가 될까 두려워했다고 쓴다. 진군하는 쥐노에게는 복종과 공물을 제안하는 사절까지 보냈다.\n\n결정을 굳힌 것은 영국 대사가 넘겨준 프랑스 관보였다. '브라간사 왕가는 유럽에서 통치를 그쳤다'는 나폴레옹의 선언을 보고, 굴복해도 왕좌가 남지 않는다는 것이 분명해졌다. 강어귀의 영국 함대는 포르투갈 함대가 프랑스 손에 들어가는 것을 막으려 했고, 두 달 전 코펜하겐이 그 본보기였다.\n\n섭정은 섭정 위원회를 세워 본국을 맡기고, 국고와 국가 문서, 정신이 온전치 못한 어머니와 가족, 대신과 귀족을 함대에 태워 영국 함대의 호위 아래 브라질로 떠났다.\n\n이 결정을 '도피'로 볼지 '전략적 이전'으로 볼지는 지금도 해석이 갈린다. 브라질 학계의 여러 연구는 브라질로 왕실을 옮기자는 구상이 18세기부터 있었고, 유럽 영토를 잃더라도 왕조와 제국을 지키려는 계산이었다고 본다 (이 부분은 교차 확인 중).",
+    "timeline": [
+      {
+        "when": "1807년 11월 29일",
+        "text": "왕실과 정부를 태운 함대가 테주강을 빠져나가 브라질로 출항"
+      },
+      {
+        "when": "1807년 11월 30일",
+        "text": "쥐노가 지친 병력 약 1,500명으로 리스본 입성"
+      },
+      {
+        "when": "1808년 1월",
+        "text": "바이아 도착, 브라질 항구를 외국 교역에 개방"
+      },
+      {
+        "when": "1808년 3월",
+        "text": "리우데자네이루에 정부를 세움"
+      },
+      {
+        "when": "1808년 8월",
+        "text": "영국군 상륙 뒤 신트라 협정으로 프랑스군 철수"
+      },
+      {
+        "when": "1815년",
+        "text": "브라질을 왕국으로 올려 포르투갈과 연합 왕국 선포"
+      },
+      {
+        "when": "1821년 7월",
+        "text": "포르투 혁명 뒤 주앙 6세가 리스본으로 귀환"
+      },
+      {
+        "when": "1822년 9월",
+        "text": "남은 아들 페드루가 브라질 독립 선언"
+      }
+    ],
+    "figures": [
+      {
+        "name": "동 주앙 (훗날 주앙 6세)",
+        "role": "포르투갈 섭정, 이 판의 결정자",
+        "caption": "도밍구스 세케이라, 섭정 시절의 초상, 1802년 무렵",
+        "credit": "Domingos Sequeira, Wikimedia Commons",
+        "license": "퍼블릭 도메인",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Prince_John_of_Portugal.jpg"
+      },
+      {
+        "name": "나폴레옹 1세",
+        "role": "프랑스 황제, B",
+        "caption": "자크루이 다비드, 「튈르리 궁 서재의 나폴레옹」, 1812년",
+        "credit": "Jacques-Louis David, Wikimedia Commons (Google Art Project)",
+        "license": "퍼블릭 도메인",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Jacques-Louis_David_-_The_Emperor_Napoleon_in_His_Study_at_the_Tuileries_-_Google_Art_Project.jpg"
+      }
+    ],
+    "map_svg": "reveal-map.svg",
     "outcome": "1807년 11월 29일 함대가 테주강을 빠져나갔다. 이튿날 쥐노가 리스본에 들어왔을 때, 끝까지 따라온 병력은 지칠 대로 지친 1,500명 남짓이었고 강에 남은 쓸 만한 전열함은 한 척뿐이었다.\n\n왕족과 대신, 귀족, 관리와 그 가족 1만 명 안팎이 함께 떠났다(추정치는 4천~1만5천 명으로 갈린다). 이들은 포르투갈 주화의 절반 가까이를 가져갔다.\n\n남은 포르투갈은 쥐노에게 군대를 해산당하고 무거운 세금에 시달렸다. 1808년 스페인에서 시작된 봉기가 번지고 웰즐리(훗날 웰링턴)의 영국군이 상륙하자, 쥐노는 그해 8월 신트라 협정으로 물러났다. 이후 전쟁 동안 포르투갈의 실권은 영국인 베레스퍼드와 스튜어트에게 넘어갔다.\n\n왕실은 1808년 1월 바이아에 닿아 브라질 항구를 외국 교역에 열었고, 3월 리우데자네이루에 정부를 세웠다. 1911년판 브리태니커는 이를 '식민지가 본국 정부의 소재지가 된 유일한 사례'라고 썼다. 1815년 브라질은 왕국으로 올라 포르투갈과 연합 왕국을 이루었다.\n\n1820년 포르투에서 혁명이 일어나자 영국까지 귀환을 요구했고, 주앙 6세는 1821년 7월 리스본으로 돌아가며 브라질을 아들 페드루에게 맡겼다. 이듬해 1822년 9월 페드루는 브라질의 독립을 선언했다.",
     "counterfactuals": [
       {
@@ -281,13 +775,34 @@
     ],
     "misreport_notes": "'적의 병력', '적 선봉의 상태', '비밀 조약' 보고에는 판에 따라 틀린 보고가 나온다. 실제로 쥐노의 선봉은 대포와 말을 거의 잃은 채 리스본에 들어왔고, 퐁텐블로 조약은 포르투갈 분할을 명시했다.",
     "sources": [
-      { "title": "Charles Oman, A History of the Peninsular War, vol. 1 (1902), Project Gutenberg", "url": "https://www.gutenberg.org/ebooks/53264" },
-      { "title": "Encyclopædia Britannica (1911), Portugal — Wikisource", "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal" },
-      { "title": "Encyclopædia Britannica (1911), Brazil — Wikisource", "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Brazil" },
-      { "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)", "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/" },
-      { "title": "Fondation Napoléon, 1807-1808 : Campagne du Portugal, en route vers l'Espagne", "url": "https://www.napoleon.org/histoire-des-2-empires/chronologies/1807-1808-campagne-du-portugal-en-route-vers-lespagne/" },
-      { "title": "Wikipédia (pt), Transferência da corte portuguesa para o Brasil — 사학사 추적용", "url": "https://pt.wikipedia.org/wiki/Transfer%C3%AAncia_da_corte_portuguesa_para_o_Brasil" },
-      { "title": "Wikipedia (en), Transfer of the Portuguese court to Brazil — 추적용", "url": "https://en.wikipedia.org/wiki/Transfer_of_the_Portuguese_court_to_Brazil" }
+      {
+        "title": "Charles Oman, A History of the Peninsular War, vol. 1 (1902), Project Gutenberg",
+        "url": "https://www.gutenberg.org/ebooks/53264"
+      },
+      {
+        "title": "Encyclopædia Britannica (1911), Portugal — Wikisource",
+        "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Portugal"
+      },
+      {
+        "title": "Encyclopædia Britannica (1911), Brazil — Wikisource",
+        "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Brazil"
+      },
+      {
+        "title": "Peter Hicks, British Strategic Foreign Policy, 1806-1815 (Fondation Napoléon)",
+        "url": "https://www.napoleon.org/en/history-of-the-two-empires/articles/british-strategic-foreign-policy-1806-1815/"
+      },
+      {
+        "title": "Fondation Napoléon, 1807-1808 : Campagne du Portugal, en route vers l'Espagne",
+        "url": "https://www.napoleon.org/histoire-des-2-empires/chronologies/1807-1808-campagne-du-portugal-en-route-vers-lespagne/"
+      },
+      {
+        "title": "Wikipédia (pt), Transferência da corte portuguesa para o Brasil — 사학사 추적용",
+        "url": "https://pt.wikipedia.org/wiki/Transfer%C3%AAncia_da_corte_portuguesa_para_o_Brasil"
+      },
+      {
+        "title": "Wikipedia (en), Transfer of the Portuguese court to Brazil — 추적용",
+        "url": "https://en.wikipedia.org/wiki/Transfer_of_the_Portuguese_court_to_Brazil"
+      }
     ]
   }
 }

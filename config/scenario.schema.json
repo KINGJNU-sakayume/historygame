@@ -302,7 +302,11 @@
         "identities",
         "redact",
         "actual_choice",
+        "decisions",
+        "summary_points",
         "actual_reasoning",
+        "timeline",
+        "figures",
         "outcome",
         "counterfactuals",
         "sources"
@@ -339,9 +343,6 @@
         "actual_choice": {
           "$ref": "#/definitions/nonEmpty"
         },
-        "actual_details": {
-          "$ref": "#/definitions/idList"
-        },
         "actual_reasoning": {
           "$ref": "#/definitions/nonEmpty"
         },
@@ -375,6 +376,107 @@
           "items": {
             "$ref": "#/definitions/source"
           }
+        },
+        "decisions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "did",
+              "note"
+            ],
+            "properties": {
+              "did": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "note": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60
+              }
+            }
+          }
+        },
+        "summary_points": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 70
+          }
+        },
+        "timeline": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "when",
+              "text"
+            ],
+            "properties": {
+              "when": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          }
+        },
+        "figures": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "role",
+              "credit",
+              "license",
+              "source_url"
+            ],
+            "properties": {
+              "name": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "role": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "image": {
+                "type": "string",
+                "pattern": "^[a-z0-9_-]+\\.(jpg|png|webp)$"
+              },
+              "caption": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "credit": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "license": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "source_url": {
+                "type": "string",
+                "pattern": "^https://"
+              }
+            }
+          }
+        },
+        "map_svg": {
+          "type": "string",
+          "pattern": "^[a-z0-9_-]+\\.svg$"
         }
       }
     }

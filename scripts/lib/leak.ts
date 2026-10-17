@@ -27,6 +27,9 @@ export function leakTerms(reveal: Scenario['reveal']): string[] {
     ...(reveal.counterfactuals ?? []).map((c) => c.text),
     ...(reveal.identities ?? []).map((i) => i.name),
     ...(reveal.redact ?? []),
+    ...(reveal.summary_points ?? []),
+    ...(reveal.timeline ?? []).flatMap((t) => [t.when, t.text]),
+    ...Object.values(reveal.decisions ?? {}).map((d) => d.note),
   ].join('\n');
   for (const m of prose.matchAll(YEAR)) terms.add(m[1]);
   return [...terms].filter(Boolean);

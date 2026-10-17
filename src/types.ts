@@ -74,14 +74,38 @@ export interface Masked {
   inquiry_limit?: number;
 }
 
+/** 세부 결정 하나에 대한 실제 기록. did: 했다(true) / 하지 않았다(false) / 기록 없음·출처 충돌(null) */
+export interface DecisionFact {
+  did: boolean | null;
+  note: string;
+}
+
+export interface Figure {
+  name: string;
+  role: string;
+  /** scenarios/<id>/figures/ 안의 파일 이름. 퍼블릭 도메인만. */
+  image?: string;
+  caption?: string;
+  credit: string;
+  license: string;
+  source_url: string;
+}
+
 export interface Reveal {
   who: string;
   identities: { entity: string; name: string }[];
   /** 마스킹 영역에 나오면 안 되는 실명·지명·연도. identities의 name과 reveal 본문의 연도는 자동으로 추가된다. */
   redact: string[];
   actual_choice: string;
-  actual_details?: string[];
+  /** 모든 세부 결정 id를 빠짐없이 덮는다 */
+  decisions: Record<string, DecisionFact>;
+  /** 실제 결정자의 논리 요약 2~4줄 */
+  summary_points: string[];
   actual_reasoning: string;
+  timeline: { when: string; text: string }[];
+  figures: Figure[];
+  /** 공개 화면 전용 실제 지리 지도 (scenarios/<id>/ 안의 파일 이름) */
+  map_svg?: string;
   outcome: string;
   counterfactuals: { option: string; text: string }[];
   misreport_notes?: string;

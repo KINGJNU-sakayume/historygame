@@ -38,6 +38,7 @@ export function collectSources(s: Scenario): { url: string; where: string; title
   };
   add(s.reveal?.sources, `${s.id} reveal.sources`);
   for (const c of s.dossier ?? []) add(c.sources, `${s.id} dossier.${c.id}`);
+  for (const f of s.reveal?.figures ?? []) out.push({ url: f.source_url, title: f.name, where: `${s.id} reveal.figures` });
   return out;
 }
 

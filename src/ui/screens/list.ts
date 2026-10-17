@@ -44,13 +44,15 @@ export function list(): HTMLElement {
     );
 
   return h('section', { class: 'screen list' },
-    h('h1', null, '나라와 인물을 기호로 바꾼 역사의 장면들'),
-    h('p', { class: 'lede' }, '당신이 결정자다. 자문관에게 묻고, 결정한 뒤, 기호 뒤의 실제 역사와 맞대어 본다.'),
-    items,
-    h('fieldset', { class: 'modes' },
-      h('legend', null, '새 판의 탐문'),
-      modeInput('limited', '질문 횟수 제한'),
-      modeInput('unlimited', '제한 없음'),
+    h('div', { class: 'list-intro' },
+      h('h1', null, '나라와 인물을 기호로 바꾼 역사의 장면들'),
+      h('p', { class: 'lede' }, '당신이 결정자다. 자문관에게 묻고, 결정한 뒤, 기호 뒤의 실제 역사와 맞대어 본다.'),
+      h('fieldset', { class: 'modes' },
+        h('legend', null, '새 판의 탐문'),
+        modeInput('limited', '질문 횟수 제한'),
+        modeInput('unlimited', '제한 없음'),
+      ),
     ),
+    h('div', { class: 'list-cases' }, h('h2', null, '사건'), items),
   );
 }

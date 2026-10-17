@@ -19,4 +19,6 @@ function get<T>(path: string, as: 'json' | 'text' = 'json'): Promise<T> {
 export const loadIndex = () => get<ScenarioIndexEntry[]>('index.json');
 export const loadScenario = (id: string) => get<PublicScenario>(`${id}.json`);
 export const loadReveal = (id: string) => get<PublicReveal>(`${id}.reveal.json`);
-export const loadMap = (id: string) => get<string>(`${id}.map.svg`, 'text');
+export const loadMap = (id: string) => get<string>(`${id}/map.svg`, 'text');
+export const loadRevealMap = (id: string) => get<string>(`${id}/reveal-map.svg`, 'text');
+export const figureUrl = (id: string, file: string) => `${base}${id}/figures/${file}`;

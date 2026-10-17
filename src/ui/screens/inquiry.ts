@@ -80,6 +80,8 @@ export function inquiry(ctx: PlayCtx): HTMLElement {
       h('button', { class: 'btn', onclick: () => ctx.commit((p) => (p.phase = 'decision'), { top: true }) }, '결정하러 가기'),
     ),
     h('details', { class: 'recap' }, h('summary', null, '상황 다시 읽기'), situation(scenario, ctx.mapSvg)),
+    h('div', { class: 'inquiry-grid' },
+    h('div', { class: 'ask-col' },
     h('h2', null, left === 0 ? '더 물을 시간이 없다' : '누구에게 물을까'),
     h('ul', { class: 'advisors', role: 'radiogroup', 'aria-label': '자문관' },
       ADVISORS.map((a) =>
@@ -111,7 +113,8 @@ export function inquiry(ctx: PlayCtx): HTMLElement {
         ),
       ),
     ),
-    answer ? h('div', { class: 'answer', 'aria-live': 'polite' }, answer) : h('div', { class: 'answer', 'aria-live': 'polite' }),
+    h('div', { class: 'answer', 'aria-live': 'polite' }, answer),
+    ),
     h('div', { class: 'dossier' },
       h('h2', null, `받은 보고 (${opened.length})`),
       earlier.length === 0 && !answer
@@ -119,6 +122,7 @@ export function inquiry(ctx: PlayCtx): HTMLElement {
         : earlier
             .map((c) => report(scenario, c, play.seed, opened.indexOf(c) + 1))
             .reverse(),
+    ),
     ),
   );
 }

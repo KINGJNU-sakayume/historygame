@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { findLeaks, leakTerms, normalize } from '../scripts/lib/leak.ts';
 import { loadScenarios, ROOT } from '../scripts/lib/scenarios.ts';
@@ -69,11 +70,21 @@ describe('validateScenario', () => {
     const f = validateScenario(
       clone((s) => {
         s.pushbacks[0].when.option = ['nope'];
-        s.reveal.actual_details = ['ghost'];
+        s.reveal.decisions.ghost = { did: true, note: '없는 결정' };
       }),
     );
     expect(f.errors.some((e) => e.includes('"nope"'))).toBe(true);
     expect(f.errors.some((e) => e.includes('"ghost"'))).toBe(true);
+  });
+
+  it('세부 결정마다 실제 기록이 있어야 한다', () => {
+    const f = validateScenario(clone((s) => delete s.reveal.decisions.mobilize));
+    expect(f.errors.some((e) => e.includes('"mobilize"'))).toBe(true);
+  });
+
+  it('선언한 인물 이미지 파일이 없으면 실패', () => {
+    const f = validateScenario(clone((s) => (s.reveal.figures[0].image = 'nobody.jpg')));
+    expect(f.errors.some((e) => e.includes('figures/nobody.jpg'))).toBe(true);
   });
 
   it('정의되지 않은 대문자 기호는 경고', () => {
@@ -91,6 +102,12 @@ describe('validateScenario', () => {
     const f = validateScenario(clone((s) => (s.tags.options.fight = ['낭만'])));
     expect(f.errors).toEqual([]);
     expect(f.warnings.some((w) => w.includes('낭만'))).toBe(true);
+  });
+
+  it('docs의 시나리오 템플릿은 스키마와 맞는다', () => {
+    const raw = JSON.parse(readFileSync(join(ROOT, 'docs/templates/scenario.template.json'), 'utf8'));
+    const f = validateScenario({ ...base, dirName: raw.id, raw, scenario: raw, svg: null });
+    expect(f.errors.filter((e) => e.includes('스키마'))).toEqual([]);
   });
 
   it('normalize는 악센트를 떼고 한글은 보존', () => {
