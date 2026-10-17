@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 330" role="img" font-family="'IBM Plex Sans KR', sans-serif" aria-label="A는 B를 상대로 진군한 뒤 일시 교전 중지 중이다. C는 중재에 나섰으며 D는 A의 동맹으로 B와 다른 전선에서 싸웠다. E는 B의 동맹이다. 원의 배치는 실제 지리가 아니다.">
+<title>승전·중재·별도 전선을 둘러싼 다섯 나라의 관계도</title>
+<defs><marker id="e3attack" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1f2733"/></marker><marker id="e3move" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#57616d"/></marker></defs>
+<rect width="400" height="330" fill="#eef1ee"/>
+<circle cx="150" cy="117" r="42" fill="#f2b530" stroke="#1f2733" stroke-width="1.5"/>
+<circle cx="244" cy="117" r="52" fill="#f3f5f2" stroke="#1f2733" stroke-width="1.5"/>
+<circle cx="56" cy="117" r="52" fill="#f3f5f2" stroke="#1f2733" stroke-width="1.5"/>
+<circle cx="244" cy="207" r="38" fill="#f3f5f2" stroke="#1f2733" stroke-width="1.5"/>
+<circle cx="189.66" cy="66.77" r="22" fill="#f3f5f2" stroke="#1f2733" stroke-width="1.5"/>
+<path d="M156 161 Q172 206 217 166" fill="none" stroke="#1f2733" stroke-width="2.5" stroke-dasharray="7 4" marker-end="url(#e3attack)"/>
+<text x="200" y="266" text-anchor="middle" font-size="10.5" fill="#1f2733">진군 후 일시 교전 중지</text>
+<path d="M56 172 Q75 218 118 157" fill="none" stroke="#57616d" stroke-width="1.5" stroke-dasharray="3 4" marker-end="url(#e3move)"/>
+<text x="29" y="211" font-size="10.5" fill="#57616d">중재</text>
+<path d="M286 206 C350 207 352 120 300 117" fill="none" stroke="#1f2733" stroke-width="2.5" stroke-dasharray="7 4" marker-end="url(#e3attack)"/>
+<text x="332" y="236" font-size="10.5" fill="#1f2733" text-anchor="middle">별도 전선</text>
+<g font-size="21" font-weight="600" text-anchor="middle" fill="#1f2733"><text x="150" y="122">A</text><text x="244" y="122">B</text><text x="56" y="122">C</text><text x="244" y="212">D</text><text x="189.66" y="73" font-size="17">E</text></g>
+<g font-size="10.5" text-anchor="middle" fill="#57616d"><text x="150" y="143">우리</text><text x="244" y="143">강화 협상 중</text><text x="56" y="143">중재 제안</text><text x="244" y="231">A의 동맹</text><text x="189.66" y="33">B의 동맹</text></g>
+<text x="200" y="286" font-size="10" fill="#57616d" text-anchor="middle">국경을 맞댄 관련 세력만 원의 접촉으로 표시했다.</text>
+<text x="200" y="318" font-size="8.8" fill="#57616d" text-anchor="middle">원 크기는 국력, 맞닿은 원은 국경을 맞댄 나라. 위치는 실제 지리와 무관하다.</text>
+</svg>

@@ -1,0 +1,862 @@
+{
+  "$comment": "에피소드 제작 지침과 템플릿에 따라 작성했다. 사실·해석·가상 장치와 검증의 근거는 research/003.md에 기록했다.",
+  "id": "003",
+  "masked": {
+    "title": "승리 뒤의 정지선",
+    "role": "당신은 왕국 A의 왕이다. 군대는 크게 이겼지만, 그 승리로 무엇을 얻고 어디서 멈출지는 아직 정하지 않았다.",
+    "situation": [
+      "왕국 A와 이웃 제국 B는 여러 나라가 묶인 공동 정치 질서의 주도권을 다투어 왔다. A는 남쪽의 신생 왕국 D와 손잡고 전쟁에 들어갔다. B 편에는 이웃 소왕국 E와 여러 나라가 섰다.",
+      "몇 주 전 A군은 B의 주력군을 큰 전투에서 물리쳤다. 군대는 적의 수도 쪽으로 더 내려갔고, 지금은 잠시 교전을 멈춘 채 강화 조건을 논의하고 있다. 그러나 B의 군대가 모두 사라진 것은 아니다.",
+      "서쪽 강국 C가 중재에 나섰다. 총리는 B에서 영토를 떼어 오기보다 공동 정치 질서에서 B를 물러나게 하고 A의 북쪽 주도권을 인정받자는 쪽이다. 당신 주변에는 적의 수도에 입성하거나 국경 땅을 얻어야 승리를 완성할 수 있다는 주장도 있다.",
+      "군의 승리에는 자부심이 있지만, 진군로의 보급과 병력 상태도 따져야 한다. 총리는 자신의 강화 방침이 받아들여지지 않으면 물러날 뜻까지 내비쳤다. 지금의 짧은 교전 중지를 실제 강화로 바꿀지, 더 큰 성과를 위해 전쟁을 이어갈지 정해야 한다."
+    ],
+    "entities": [
+      {
+        "id": "A",
+        "label": "승기를 잡은 왕국",
+        "self": true
+      },
+      {
+        "id": "B",
+        "label": "패전한 이웃 제국"
+      },
+      {
+        "id": "C",
+        "label": "중재에 나선 강국"
+      },
+      {
+        "id": "D",
+        "label": "남쪽의 동맹 왕국"
+      },
+      {
+        "id": "E",
+        "label": "B를 돕는 소왕국"
+      }
+    ],
+    "map_svg": "map.svg",
+    "options": [
+      {
+        "key": "limited_peace",
+        "text": "B에서 A로의 영토 할양과 수도 입성을 요구하지 않고, B가 공동 정치 질서에서 물러나는 조건으로 신속히 강화한다. A의 북쪽 주도권 확보에 집중한다."
+      },
+      {
+        "key": "capital_advance",
+        "text": "교전 중지가 끝나면 수도 방향으로 진격을 재개한다. 수도를 군사적으로 압박하거나 점령한 뒤 더 유리한 강화 조건을 정한다."
+      },
+      {
+        "key": "border_settlement",
+        "text": "수도 입성은 접되 B의 국경 지역 할양을 강화의 핵심 조건으로 삼는다. 광범위한 정치 질서 개편보다 방어에 유리한 땅을 우선 확보한다."
+      },
+      {
+        "key": "congress",
+        "text": "현재의 교전 중지를 연장하고 여러 강국이 참여하는 회의에 최종 처리를 맡긴다. 단독으로 조건을 밀어붙이기보다 국제적 승인을 구한다."
+      }
+    ],
+    "decisions": [
+      {
+        "id": "readiness",
+        "group": "군사 판단",
+        "label": "부대별 질병·가용 병력 보고를 다시 받아 진군 가능 병력을 확인한다."
+      },
+      {
+        "id": "siege_estimate",
+        "group": "군사 판단",
+        "label": "수도 정면 공격과 우회안을 공성포 운송 시간·예상 손실로 비교하게 한다."
+      },
+      {
+        "id": "terms_memo",
+        "group": "강화 조건",
+        "label": "영토 요구와 공동 정치 질서 개편 요구를 나눈 검토 문서를 받는다."
+      },
+      {
+        "id": "partner_clause",
+        "group": "강화 조건",
+        "label": "E의 영토 보전을 요구하는 B의 입장을 별도 협상 항목으로 다룬다."
+      },
+      {
+        "id": "mediator_channel",
+        "group": "대외 조율",
+        "label": "군사 방침과 별개로 C의 중재 사절과 대화 창구를 유지한다."
+      },
+      {
+        "id": "ally_consult",
+        "group": "대외 조율",
+        "label": "동맹국 D의 요구와 교전 중지 입장을 문서로 다시 확인하게 한다."
+      },
+      {
+        "id": "heir_hearing",
+        "group": "왕실과 내정",
+        "label": "후계자의 의견도 따로 듣고 총리와의 의견 차이를 조정한다."
+      },
+      {
+        "id": "budget_review",
+        "group": "왕실과 내정",
+        "label": "전쟁 연장 비용과 의회가 승인하지 않은 군사비의 처리 문제를 함께 검토한다."
+      }
+    ],
+    "inquiry_limit": 6
+  },
+  "dossier": [
+    {
+      "id": "c01",
+      "advisor": "general",
+      "topic": "military",
+      "title": "승전과 남은 적군",
+      "text": "큰 전투에서 B군을 물리친 것은 분명합니다. 그러나 적의 포병과 기병은 퇴각을 엄호했고, 상당한 병력이 조직을 유지한 채 빠져나갔습니다. 승전 보고를 적군 전체의 소멸로 읽어서는 안 됩니다.",
+      "reliability": 1,
+      "sources": [
+        {
+          "title": "1911 브리태니커, Seven Weeks’ War — 전역과 진군의 한계",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Seven_Weeks%27_War"
+        }
+      ]
+    },
+    {
+      "id": "c02",
+      "advisor": "general",
+      "topic": "geography",
+      "title": "수도 앞의 방어선",
+      "text": "B는 수도 앞 강가에 방어선을 준비하고 있습니다. 다른 전선과 내륙에서 증원군도 철도로 모으고 있습니다. 수도에 가까워졌다고 그곳을 곧바로 점령할 수 있는 것은 아닙니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "1911 브리태니커, Seven Weeks’ War — 전역과 진군의 한계",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Seven_Weeks%27_War"
+        },
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        }
+      ]
+    },
+    {
+      "id": "c03",
+      "advisor": "general",
+      "topic": "military",
+      "title": "전선 끝의 보급망",
+      "text": "A의 철도 연락은 적국 국경에서 끊기고 이후에는 도로에 더 의존합니다. 길은 좋지 않고 병력은 빠른 진군으로 지쳤습니다. 승리한 군대에도 재편성과 휴식이 필요합니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "1911 브리태니커, Seven Weeks’ War — 전역과 진군의 한계",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Seven_Weeks%27_War"
+        }
+      ]
+    },
+    {
+      "id": "c04",
+      "advisor": "spymaster",
+      "topic": "military",
+      "title": "부대의 질병 보고",
+      "text": "일부 부대에서 전염병 때문에 가용 병력이 줄었다는 보고가 들어왔습니다. 총리는 이 보고를 전쟁을 서둘러 끝낼 이유로 보고 있습니다. 그것을 전군의 같은 비율로 확대할 근거까지 있는 것은 아닙니다.",
+      "reliability": 0.85,
+      "sources": [
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        }
+      ]
+    },
+    {
+      "id": "c05",
+      "advisor": "finance",
+      "topic": "finance",
+      "title": "의회와 군사 지출",
+      "text": "정부는 군제 개편을 둘러싸고 의회와 충돌해 왔습니다. 의회가 승인하지 않은 지출 문제는 전장에서 이겼다고 장부에서 사라지지 않습니다. 전쟁 뒤 국내의 협력 기반도 다시 마련해야 합니다.",
+      "reliability": 1,
+      "sources": [
+        {
+          "title": "J. W. Headlam, Bismarck (1899), 제11장 종전 협상·제12장 북독일연방",
+          "url": "https://www.gutenberg.org/files/12400/12400-h/12400-h.htm"
+        },
+        {
+          "title": "1911 브리태니커, Bismarck — 동맹·강화와 국내 정치",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Bismarck%2C_Otto_Eduard_Leopold_von"
+        }
+      ]
+    },
+    {
+      "id": "c06",
+      "advisor": "finance",
+      "topic": "finance",
+      "title": "점령 뒤의 충성심",
+      "text": "총리는 땅을 더 얻을 때 그 주민이 다음 전쟁에도 A에 충성할지를 따지고 있습니다. 관료와 병력을 빼면 유지하기 어려운 지역은 지도에 칠한 넓이만큼 힘을 더해 주지 못한다는 견해입니다. 이는 확정된 세입 계산이 아니라 통치 비용에 관한 판단입니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        }
+      ]
+    },
+    {
+      "id": "c07",
+      "advisor": "general",
+      "topic": "military",
+      "title": "공성포의 시간표",
+      "text": "앞선 군사 논의에서는 수도 정면 공격에 중포가 필요하고, 그것을 가져오는 데 약 2주가 걸린다고 보았습니다. 운송 뒤에도 돌파구를 만들고 공격해야 합니다. 그 예상은 일정을 검토한 것이지 이미 점령을 보장한 약속이 아닙니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        }
+      ],
+      "misreport": "수도 공격에 약 2주가 걸린다는 수치는 중포 운송뿐 아니라 포대 설치와 돌파 준비까지 포함한 일정이라는 요약 보고입니다. 원문 시간표는 다시 대조 중입니다. 실제 공격의 결과를 보장하는 보고는 아닙니다."
+    },
+    {
+      "id": "c08",
+      "advisor": "foreign",
+      "topic": "enemy",
+      "title": "중재와 개입의 차이",
+      "text": "C는 중재하겠다고 나섰지만 군대를 보내는 문제와는 구별해야 합니다. C의 군사 준비가 충분하지 않다는 판단도 있습니다. 그렇다고 중재를 무시해도 앞으로 아무 일도 없으리라고 보장할 수는 없습니다.",
+      "reliability": 0.85,
+      "sources": [
+        {
+          "title": "J. W. Headlam, Bismarck (1899), 제11장 종전 협상·제12장 북독일연방",
+          "url": "https://www.gutenberg.org/files/12400/12400-h/12400-h.htm"
+        },
+        {
+          "title": "1911 브리태니커, Bismarck — 동맹·강화와 국내 정치",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Bismarck%2C_Otto_Eduard_Leopold_von"
+        }
+      ]
+    },
+    {
+      "id": "c09",
+      "advisor": "spymaster",
+      "topic": "enemy",
+      "title": "중재자의 기대 몫",
+      "text": "C와 A 사이에는 C가 무엇을 보상받을지 확정한 조약이 없습니다. 협의 과정에서 영토나 세력 균형을 둘러싼 기대가 오갔습니다. 호의적인 말과 요구 범위가 합의된 문서는 다릅니다.",
+      "reliability": 0.8,
+      "sources": [
+        {
+          "title": "J. W. Headlam, Bismarck (1899), 제11장 종전 협상·제12장 북독일연방",
+          "url": "https://www.gutenberg.org/files/12400/12400-h/12400-h.htm"
+        },
+        {
+          "title": "1911 브리태니커, Bismarck — 동맹·강화와 국내 정치",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Bismarck%2C_Otto_Eduard_Leopold_von"
+        }
+      ]
+    },
+    {
+      "id": "c10",
+      "advisor": "foreign",
+      "topic": "ally",
+      "title": "동맹의 다른 목표",
+      "text": "D와 손잡은 일은 B가 병력을 여러 전선에 나누게 했습니다. 그러나 D가 원하는 것은 B가 지닌 자신의 인접 영토입니다. A의 공동 정치 질서 개편과 동맹국의 영토 목표를 같은 것으로 보아서는 안 됩니다.",
+      "reliability": 1,
+      "sources": [
+        {
+          "title": "J. W. Headlam, Bismarck (1899), 제11장 종전 협상·제12장 북독일연방",
+          "url": "https://www.gutenberg.org/files/12400/12400-h/12400-h.htm"
+        },
+        {
+          "title": "1911 브리태니커, Seven Weeks’ War — 전역과 진군의 한계",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Seven_Weeks%27_War"
+        }
+      ]
+    },
+    {
+      "id": "c11",
+      "advisor": "general",
+      "topic": "enemy",
+      "title": "돌아오는 다른 군단",
+      "text": "B는 남쪽 전선의 군단을 수도 쪽으로 불러들이고 있습니다. A가 이긴 전투에 나오지 않았던 병력도 새 작전에 들어올 수 있습니다. 그들이 모두 이미 같은 전장에 집결했다고 단정하는 보고는 아닙니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "1911 브리태니커, Seven Weeks’ War — 전역과 진군의 한계",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Seven_Weeks%27_War"
+        }
+      ]
+    },
+    {
+      "id": "c12",
+      "advisor": "foreign",
+      "topic": "enemy",
+      "title": "소왕국을 지킬 조건",
+      "text": "B는 E의 영토 보전을 강화 조건으로 내세우고 있습니다. E의 군대는 B와 함께 싸웠고, 퇴각 때도 조직을 지켰습니다. 패전국이 모든 동맹국을 똑같이 포기하려 한다고 보면 협상선을 잘못 읽게 됩니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        },
+        {
+          "title": "1911 브리태니커, Germany/History — 1866년 전쟁과 강화",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Germany/History"
+        }
+      ]
+    },
+    {
+      "id": "c13",
+      "advisor": "chamberlain",
+      "topic": "opinion",
+      "title": "승리를 다투는 조정",
+      "text": "수도 입성과 추가 영토를 바라는 목소리가 조정에 있습니다. 총리는 그것이 정치 목표에 꼭 필요한지 되묻습니다. 전쟁을 멈추자는 말이 군의 전공을 부정하는 말인지, 군사적 성과를 다른 형태로 바꾸자는 말인지 나누어 보아야 합니다.",
+      "reliability": 1,
+      "sources": [
+        {
+          "title": "1911 브리태니커, William I. of Germany — 왕의 권한·가족·종전 논쟁",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/William_I._of_Germany"
+        },
+        {
+          "title": "1911 브리태니커, Bismarck — 동맹·강화와 국내 정치",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Bismarck%2C_Otto_Eduard_Leopold_von"
+        },
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        }
+      ]
+    },
+    {
+      "id": "c14",
+      "advisor": "chamberlain",
+      "topic": "lineage",
+      "title": "왕조의 옛 영지",
+      "text": "당신 가문이 예전에 다스린 지역이 지금은 다른 왕국에 속해 있습니다. 총리는 일부 종교적 기억이 남아 있어도 주민의 충성을 넓게 기대하기 어렵다고 봅니다. 가문의 기억과 주민의 현재 정치적 소속은 같은 것이 아닙니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        }
+      ],
+      "misreport": "옛 왕조를 기억하는 지역의 종교적 전통이 최근까지 널리 이어졌다는 제보입니다. 그것이 A에 대한 현재의 정치적 충성까지 뜻하는지는 확인하지 못했습니다. 주민 전체의 의사라고 보고드릴 수는 없습니다."
+    },
+    {
+      "id": "c15",
+      "advisor": "spymaster",
+      "topic": "opinion",
+      "title": "같은 편의 승전 열기",
+      "text": "전쟁 전에는 총리의 정책에 반대가 컸지만 승전 소식 뒤에는 환호가 나왔습니다. 그렇다고 전쟁을 연장하거나 모든 병합안을 내놓아도 같은 지지를 얻는다는 조사 결과가 있는 것은 아닙니다. 지금의 환호는 이미 이룬 승전에 대한 반응입니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "J. W. Headlam, Bismarck (1899), 제11장 종전 협상·제12장 북독일연방",
+          "url": "https://www.gutenberg.org/files/12400/12400-h/12400-h.htm"
+        }
+      ]
+    },
+    {
+      "id": "c16",
+      "advisor": "foreign",
+      "topic": "geography",
+      "title": "북쪽과 남쪽의 선",
+      "text": "C와 논의 중인 구상은 A의 북쪽 세력 확대와 남쪽 나라들의 별도 지위를 구별합니다. 같은 언어권 전체를 한꺼번에 묶는 일까지 C가 수락했다고 볼 수는 없습니다. 협상이 허용하는 범위와 궁극적으로 원하는 범위는 다를 수 있습니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "J. W. Headlam, Bismarck (1899), 제11장 종전 협상·제12장 북독일연방",
+          "url": "https://www.gutenberg.org/files/12400/12400-h/12400-h.htm"
+        },
+        {
+          "title": "1911 브리태니커, Germany/History — 1866년 전쟁과 강화",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Germany/History"
+        }
+      ]
+    },
+    {
+      "id": "c17",
+      "advisor": "chamberlain",
+      "topic": "opinion",
+      "title": "물러나겠다는 총리",
+      "text": "총리는 자신의 강화 의견이 받아들여지지 않은 채 전쟁을 계속한다면 직무에서 물러나게 해 달라는 뜻을 밝혔습니다. 왕의 결정권을 총리가 가진 것은 아닙니다. 그러나 군사적 선택과 함께 앞으로 외교를 누가 맡을지도 정해야 합니다.",
+      "reliability": 0.95,
+      "sources": [
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        },
+        {
+          "title": "1911 브리태니커, Bismarck — 동맹·강화와 국내 정치",
+          "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Bismarck%2C_Otto_Eduard_Leopold_von"
+        }
+      ]
+    },
+    {
+      "id": "c18",
+      "advisor": "foreign",
+      "topic": "enemy",
+      "title": "오늘의 적과 내일",
+      "text": "총리는 B를 지나치게 해치면 B가 C를 비롯한 A의 다른 경쟁자와 손잡을 수 있다고 우려합니다. 반대로 B와 다시 협력할 여지를 남겨야 한다는 주장입니다. 아직 체결하지 않은 동맹을 이미 확보했다고 보고하는 것은 아닙니다.",
+      "reliability": 0.9,
+      "sources": [
+        {
+          "title": "비스마르크 회고록 발췌: 오스트리아와의 강화, Fordham 사료집",
+          "url": "https://sourcebooks.fordham.edu/mod/germanunification.asp"
+        },
+        {
+          "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+          "url": "https://archive.org/details/bismarckmanstat02bism"
+        }
+      ]
+    }
+  ],
+  "pushbacks": [
+    {
+      "id": "p_peace_gain",
+      "when": {
+        "option": [
+          "limited_peace"
+        ]
+      },
+      "advisor": "chamberlain",
+      "title": "보여 줄 성과",
+      "text": "적 수도에도 들어가지 않고 적의 땅도 A로 가져오지 않는 이유를 군과 조정에 설명해야 합니다. 공동 정치 질서에서 얻는 권한을 구체적인 조건으로 남기십시오."
+    },
+    {
+      "id": "p_peace_future",
+      "when": {
+        "option": [
+          "limited_peace"
+        ]
+      },
+      "advisor": "foreign",
+      "title": "미래의 보장",
+      "text": "B를 덜 자극해도 B가 반드시 A의 우방이 되는 것은 아닙니다. 재협력의 가능성을 확정된 동맹처럼 계산해서는 안 됩니다."
+    },
+    {
+      "id": "p_advance_front",
+      "when": {
+        "option": [
+          "capital_advance"
+        ]
+      },
+      "advisor": "general",
+      "title": "승전 뒤의 적",
+      "text": "수도 쪽에는 방어선과 증원군이 남아 있습니다. 이미 이긴 전투의 조건이 다음 공격에서도 그대로 반복되리라고 볼 수는 없습니다."
+    },
+    {
+      "id": "p_advance_west",
+      "when": {
+        "option": [
+          "capital_advance"
+        ]
+      },
+      "advisor": "foreign",
+      "title": "다른 전선의 값",
+      "text": "진격에 시간이 더 들면 C의 개입 여지도 커질 수 있습니다. 수도 입성의 이익과 전쟁이 넓어질 위험을 함께 감수해야 합니다."
+    },
+    {
+      "id": "p_border_hold",
+      "when": {
+        "option": [
+          "border_settlement"
+        ]
+      },
+      "advisor": "finance",
+      "title": "확보 뒤의 유지",
+      "text": "국경 땅을 얻어도 주민의 충성이 저절로 따라오는 것은 아닙니다. 병력과 관료를 얼마나 남겨야 할지 따져야 합니다."
+    },
+    {
+      "id": "p_border_consent",
+      "when": {
+        "option": [
+          "border_settlement"
+        ]
+      },
+      "advisor": "foreign",
+      "title": "상대의 협상선",
+      "text": "B는 작은 영토 할양에도 강하게 반대하고 있습니다. 수도 입성을 접었다는 사실만으로 당신이 원하는 국경선에 동의하지는 않을 것입니다."
+    },
+    {
+      "id": "p_congress_power",
+      "when": {
+        "option": [
+          "congress"
+        ]
+      },
+      "advisor": "foreign",
+      "title": "회의의 참가자",
+      "text": "여러 강국이 참가하면 A의 승전 이익만 다루는 회의가 되지 않습니다. 참가국들이 원하는 균형이 A가 원하는 질서와 다를 수 있습니다."
+    },
+    {
+      "id": "p_congress_truce",
+      "when": {
+        "option": [
+          "congress"
+        ]
+      },
+      "advisor": "general",
+      "title": "시간과 전력 회복",
+      "text": "교전 중지의 연장은 A만 쉬게 하는 일이 아닙니다. B도 병력을 모을 수 있으므로 회의가 길어질 때의 군사 조건을 정해야 합니다."
+    },
+    {
+      "id": "p_military_report",
+      "when": {
+        "option": [
+          "capital_advance",
+          "border_settlement"
+        ],
+        "none": [
+          "readiness"
+        ]
+      },
+      "advisor": "general",
+      "title": "보고 없는 압박",
+      "text": "군사적 압박을 협상 카드로 쓰면서 부대별 가용 병력의 재확인은 고르지 않았습니다. 명목 병력과 실제 움직일 수 있는 병력을 같은 것으로 계산하지 마십시오."
+    },
+    {
+      "id": "p_ally_consult",
+      "when": {
+        "none": [
+          "ally_consult"
+        ]
+      },
+      "advisor": "foreign",
+      "title": "동맹국의 요구",
+      "text": "D는 자신의 영토 목표를 위해 전쟁에 들어왔습니다. A가 고른 종전 방침과 그 요구가 어디서 만나는지 따로 확인하지 않았습니다."
+    }
+  ],
+  "tags": {
+    "options": {
+      "limited_peace": [
+        "실리",
+        "장기포석",
+        "변혁"
+      ],
+      "capital_advance": [
+        "위험선호",
+        "명분"
+      ],
+      "border_settlement": [
+        "실리",
+        "단기수습"
+      ],
+      "congress": [
+        "위험회피",
+        "현상유지"
+      ]
+    },
+    "decisions": {
+      "readiness": [
+        "위험회피"
+      ],
+      "siege_estimate": [
+        "실리"
+      ],
+      "terms_memo": [
+        "장기포석"
+      ],
+      "mediator_channel": [
+        "실리"
+      ],
+      "ally_consult": [
+        "동맹신뢰"
+      ],
+      "heir_hearing": [
+        "현상유지"
+      ]
+    }
+  },
+  "reveal": {
+    "who": "프로이센 국왕 빌헬름 1세, 1866년 7월 하순 니콜스부르크 — 승전 뒤의 강화 결정",
+    "identities": [
+      {
+        "entity": "A",
+        "name": "프로이센"
+      },
+      {
+        "entity": "B",
+        "name": "오스트리아"
+      },
+      {
+        "entity": "C",
+        "name": "프랑스"
+      },
+      {
+        "entity": "D",
+        "name": "이탈리아"
+      },
+      {
+        "entity": "E",
+        "name": "작센"
+      }
+    ],
+    "redact": [
+      "빌헬름",
+      "Wilhelm",
+      "William",
+      "프리드리히",
+      "Friedrich",
+      "Frederick",
+      "오토 폰 비스마르크",
+      "비스마르크",
+      "Bismarck",
+      "몰트케",
+      "Moltke",
+      "론",
+      "Roon",
+      "프란츠 요제프",
+      "Franz Joseph",
+      "나폴레옹",
+      "Napoleon",
+      "Napoléon",
+      "베네데티",
+      "Benedetti",
+      "카로이",
+      "Karolyi",
+      "Károlyi",
+      "니콜스부르크",
+      "Nikolsburg",
+      "미쿨로프",
+      "Mikulov",
+      "쾨니히그레츠",
+      "Königgrätz",
+      "Koniggratz",
+      "흐라데츠크랄로베",
+      "Hradec Králové",
+      "사도바",
+      "Sadowa",
+      "보오전쟁",
+      "보오 전쟁",
+      "Austro-Prussian War",
+      "Seven Weeks",
+      "7주 전쟁",
+      "비엔나",
+      "빈",
+      "Vienna",
+      "Wien",
+      "프로이센 왕국",
+      "Prussia",
+      "Preußen",
+      "Preussen",
+      "Austria",
+      "Österreich",
+      "Osterreich",
+      "France",
+      "Italy",
+      "Italia",
+      "Saxony",
+      "Sachsen",
+      "독일",
+      "Germany",
+      "Deutschland",
+      "German",
+      "베를린",
+      "Berlin",
+      "프라하",
+      "Prague",
+      "Praha",
+      "브륀",
+      "Brünn",
+      "Brunn",
+      "브르노",
+      "Brno",
+      "올뮈츠",
+      "Olmütz",
+      "Olmutz",
+      "올로모우츠",
+      "Olomouc",
+      "프레스부르크",
+      "Pressburg",
+      "브라티슬라바",
+      "Bratislava",
+      "블루메나우",
+      "Blumenau",
+      "플로리츠도르프",
+      "Floridsdorf",
+      "보헤미아",
+      "Bohemia",
+      "모라비아",
+      "Moravia",
+      "베네치아",
+      "Venetia",
+      "Venezia",
+      "베네토",
+      "Veneto",
+      "슐레지엔",
+      "Silesia",
+      "Schlesien",
+      "마인강",
+      "Main",
+      "도나우강",
+      "Danube",
+      "Donau",
+      "엘베강",
+      "Elbe",
+      "하노버",
+      "Hanover",
+      "Hannover",
+      "바이에른",
+      "Bavaria",
+      "Bayern",
+      "프랑크푸르트",
+      "Frankfurt",
+      "헤센",
+      "Hesse",
+      "나사우",
+      "Nassau",
+      "안스바흐",
+      "Ansbach",
+      "Anspach",
+      "바이로이트",
+      "Bayreuth",
+      "Baireuth",
+      "북독일연방",
+      "North German Confederation",
+      "Northern German Confederation",
+      "슐레스비히",
+      "Schleswig",
+      "홀슈타인",
+      "Holstein",
+      "러시아",
+      "Russia",
+      "헝가리",
+      "Hungary",
+      "파르두비체",
+      "Pardubitz",
+      "Pardubice"
+    ],
+    "actual_choice": "limited_peace",
+    "decisions": {
+      "readiness": {
+        "did": null,
+        "note": "총리가 부대의 질병 보고를 받은 기록은 있으나 왕의 별도 재확인 지시는 미확인이다."
+      },
+      "siege_estimate": {
+        "did": true,
+        "note": "회고록에 중포 운송·정면 공격·우회를 비교한 논의와 왕의 판단이 남아 있다."
+      },
+      "terms_memo": {
+        "did": true,
+        "note": "총리는 강화 필요성을 문서로 정리하여 왕에게 제시했다."
+      },
+      "partner_clause": {
+        "did": true,
+        "note": "오스트리아의 작센 영토 보전 요구를 수용하는 조건으로 강화했다."
+      },
+      "mediator_channel": {
+        "did": true,
+        "note": "프랑스 중재를 원칙적으로 받아들이고 사절과 협상을 이어갔다."
+      },
+      "ally_consult": {
+        "did": null,
+        "note": "동맹국 협의를 조건으로 내세웠으나 이 문구의 별도 문서 확인 지시는 미확인이다."
+      },
+      "heir_hearing": {
+        "did": true,
+        "note": "왕세자가 왕과 별도로 논의했고 왕은 총리의 강화 방침을 수용했다."
+      },
+      "budget_review": {
+        "did": null,
+        "note": "전후 군사비 사후 승인 입법은 확인되나 이 시점의 통합 비용 검토 지시는 미확인이다."
+      }
+    },
+    "summary_points": [
+      "수도 입성보다 오스트리아의 공동 질서 이탈과 북쪽 주도권 확보를 받아들였다.",
+      "상대의 보복심과 프랑스를 포함한 다른 강국의 개입 위험을 고려한 방침이었다.",
+      "총리·왕세자의 설득 끝에 더 큰 군사·영토 요구를 접고 강화에 동의했다."
+    ],
+    "actual_reasoning": "전쟁의 목표는 비엔나에 깃발을 꽂는 일만이 아니었다. 비스마르크는 프로이센이 독일의 주도권을 얻고 오스트리아를 새 질서에서 배제하는 것을 핵심 성과로 보았다. 오스트리아에서 프로이센으로 땅을 떼어 오지 않아도 그 성과를 확보할 수 있다고 주장했다.\n\n그는 회고록에서 패전국의 자존심을 필요 이상으로 상하게 하면 프랑스나 다른 경쟁자와 결합하려는 보복심을 키울 수 있다고 설명했다. 수도 입성과 영토 할양을 줄이는 것은 오스트리아를 동맹으로 확정하는 거래가 아니라, 앞으로의 선택지를 닫지 않으려는 정책이었다.\n\n빌헬름 1세는 처음부터 이 노선에 동의하지 않았다. 추가 영토에 대한 요구, 군의 승전 기대, 왕조에 대한 배려가 종전 논쟁에 함께 얽혀 있었다. 총리는 자신의 의견을 문서로 내고 사임 가능성까지 제시했다. 왕세자의 설득도 거친 뒤 왕이 조건을 받아들여 예비 강화로 이어졌다.\n\n설명의 강조점은 사료마다 다르다. 비스마르크 회고록은 군사적 과욕을 제어한 자신의 역할을 부각한다. 헤들럼은 왕의 반대가 단순히 더 많은 영토를 원해서만이 아니라 어느 군주의 영토를 어떤 방식으로 처리할지에 대한 갈등이기도 했다고 지적한다. 이 판은 왕이 전쟁을 멈춘 행위와, 총리가 훗날 제시한 이유를 구분한다.",
+    "outcome": "1866년 7월 26일 니콜스부르크에서 예비 강화가 체결되었고 8월 23일 프라하의 정식 강화로 이어졌다. 오스트리아는 프로이센에 국경 영토를 할양하지 않았고 프로이센군의 비엔나 입성도 종전의 조건이 되지 않았다. 다만 베네치아 방면의 영토 처리는 이탈리아와 프랑스가 관여한 별도 경로로 진행되었다.\n\n그 대신 오스트리아는 독일의 새 정치 질서에서 제외되었고, 프로이센이 마인강 북쪽에 더 긴밀한 연합을 만드는 길이 열렸다. 작센의 영토는 보전되었다. 프로이센은 하노버·헤센 선제후국·나사우·프랑크푸르트 등을 병합했다. 오스트리아에 보인 제한된 요구가 모든 패전국에 똑같이 적용된 것은 아니었다.\n\n강화는 배상금까지 모두 없앤 합의도 아니었다. 초기 접촉에서 거론한 배상금 없는 조건과 최종 전후 정산을 혼동해서는 안 된다. 남부 국가들과의 별도 협상 및 군사 동맹, 국내 군사비의 사후 승인과 의회 세력의 재편도 뒤따랐다.\n\n1867년 북독일연방이 출범했고, 1870년 프랑스와의 전쟁을 거쳐 1871년 독일 제국이 성립했다. 이 후속 사건들이 1866년 7월에 확정되어 있었던 것은 아니다. 오스트리아를 덜 자극한 선택이 이후의 모든 전쟁을 피하게 했다는 결론도 낼 수 없다.",
+    "timeline": [
+      {
+        "when": "1866년 봄",
+        "text": "프로이센은 이탈리아와 동맹을 맺고 오스트리아와의 전쟁을 준비했다."
+      },
+      {
+        "when": "1866년 7월 3일",
+        "text": "쾨니히그레츠 전투에서 프로이센이 오스트리아·작센군을 물리쳤다."
+      },
+      {
+        "when": "1866년 7월 22일",
+        "text": "정오에 일시 교전 중지가 발효되어 블루메나우의 전투도 중단되었다."
+      },
+      {
+        "when": "1866년 7월 26일",
+        "text": "니콜스부르크에서 예비 강화가 체결되었다."
+      },
+      {
+        "when": "1866년 8월 23일",
+        "text": "프라하 강화로 오스트리아의 독일 질서 이탈과 북쪽 재편의 조건이 정리되었다."
+      },
+      {
+        "when": "1866년 하반기",
+        "text": "프로이센의 병합과 남부 국가들과의 동맹, 군사비 사후 승인 절차가 진행되었다."
+      },
+      {
+        "when": "1867년",
+        "text": "프로이센 주도의 북독일연방이 성립했다."
+      },
+      {
+        "when": "1871년 1월 18일",
+        "text": "프랑스와의 전쟁 중 빌헬름 1세가 독일 황제로 선포되었다."
+      }
+    ],
+    "figures": [
+      {
+        "name": "빌헬름 1세",
+        "role": "프로이센 국왕, 이 판의 최종 결정자",
+        "image": "wilhelm.jpg",
+        "caption": "빌헬름 1세 초상 사진, 약 1860~1865년 (NARA 기록)",
+        "credit": "Mathew Brady 소장 사진군, Wikimedia Commons / NARA",
+        "license": "퍼블릭 도메인 (파일 페이지의 PD-USGov 표기)",
+        "source_url": "https://commons.wikimedia.org/wiki/File:William_I,_Emperor_of_Germany_-_NARA_-_526898.jpg"
+      },
+      {
+        "name": "오토 폰 비스마르크",
+        "role": "프로이센 총리, 제한된 강화 방침을 주장",
+        "image": "bismarck.jpg",
+        "caption": "비스마르크 초상 사진, 약 1860~1865년 (NARA 기록)",
+        "credit": "Mathew Brady 소장 사진군, Wikimedia Commons / NARA",
+        "license": "퍼블릭 도메인 (파일 페이지의 PD-USGov 표기)",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Count_Otto_Von_Bismarck_-_NARA_-_526890.jpg"
+      }
+    ],
+    "map_svg": "reveal-map.svg",
+    "counterfactuals": [
+      {
+        "option": "capital_advance",
+        "text": "수도에 대한 압박이나 점령은 협상력을 높였을 가능성이 있다. 그러나 군사 연구가 기록한 방어선·증원·보급 문제, 회고록의 공성 시간과 프랑스 개입 우려를 보면 추가 손실과 전쟁 확대도 가능한 결과다. 비엔나가 반드시 함락되었거나 프랑스가 반드시 참전했을 것이라고 예측하지 않는다."
+      },
+      {
+        "option": "border_settlement",
+        "text": "왕이 검토한 국경 영토를 확보했다면 일부 군사적 완충지를 얻었을 수 있다. 반면 오스트리아 측의 할양 거부와 주민의 충성에 대한 비스마르크의 우려에 비추어 협상이 지연되거나 새 통치 부담이 생겼을 가능성도 있다. 영토 이익이 실제 정치 질서 개편보다 컸을지는 판단할 수 없는 추정이다."
+      },
+      {
+        "option": "congress",
+        "text": "강국 회의는 합의의 국제적 지지를 넓히는 길이 되었을 수 있다. 그러나 프랑스의 세력 균형 관심과 러시아의 회의 구상에 대한 헤들럼의 서술을 보면, 프로이센의 성과를 다른 강국이 다시 조정하는 장이 되었을 가능성도 있다. 회의 개최·참가국 동의·최종 국경은 모두 확정할 수 없다."
+      }
+    ],
+    "misreport_notes": "c07의 약 2주를 공성 준비 전체 일정으로 전하는 보고와 c14의 옛 왕조 기억이 널리 이어진다는 제보는 가상 오보다. 실제 유포를 입증한 기록은 아니다. 회고록은 약 2주를 중포 운송에 필요한 시간으로 구분했고, 옛 영지의 종교적 기억은 제한적이며 오래 지속되지 않았다고 설명한다. 이미 이긴 전투, 교전 중지, 적 증원, 강화의 핵심 요구 자체는 오보로 바꾸지 않는다.",
+    "sources": [
+      {
+        "title": "비스마르크 회고록 발췌: 오스트리아와의 강화, Fordham 사료집",
+        "url": "https://sourcebooks.fordham.edu/mod/germanunification.asp"
+      },
+      {
+        "title": "J. W. Headlam, Bismarck (1899), 제11장 종전 협상·제12장 북독일연방",
+        "url": "https://www.gutenberg.org/files/12400/12400-h/12400-h.htm"
+      },
+      {
+        "title": "1911 브리태니커, Germany/History — 1866년 전쟁과 강화",
+        "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Germany/History"
+      },
+      {
+        "title": "1911 브리태니커, Seven Weeks’ War — 전역과 진군의 한계",
+        "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Seven_Weeks%27_War"
+      },
+      {
+        "title": "1911 브리태니커, William I. of Germany — 왕의 권한·가족·종전 논쟁",
+        "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/William_I._of_Germany"
+      },
+      {
+        "title": "1911 브리태니커, Bismarck — 동맹·강화와 국내 정치",
+        "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Bismarck%2C_Otto_Eduard_Leopold_von"
+      },
+      {
+        "title": "비스마르크, The Man and the Statesman, vol. 2 (1898), 제20장, 특히 36~48쪽",
+        "url": "https://archive.org/details/bismarckmanstat02bism"
+      },
+      {
+        "title": "1911 브리태니커, Benedetti, Vincent — 프랑스의 중재 사절",
+        "url": "https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Benedetti%2C_Vincent"
+      }
+    ]
+  }
+}
