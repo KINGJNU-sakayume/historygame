@@ -1,9 +1,9 @@
 import { triggeredPushbacks } from '../../engine/pushback.ts';
 import { tagsForChoice } from '../../engine/tags.ts';
 import { update } from '../../store.ts';
-import { h, paragraphs } from '../dom.ts';
+import { h } from '../dom.ts';
 import { ADVISOR_LABEL } from '../labels.ts';
-import { decisionLabel, optionLabel, telegram, type PlayCtx } from '../common.ts';
+import { decisionText, optionText, prose, redacted, type PlayCtx } from '../common.ts';
 
 export function pushback(ctx: PlayCtx): HTMLElement {
   const { scenario, play } = ctx;
@@ -28,33 +28,38 @@ export function pushback(ctx: PlayCtx): HTMLElement {
   return h(
     'section',
     { class: 'screen pushback' },
-    h('h2', null, '봉인 전 이의 제기'),
-    telegram({ from: '당신의 결정', cls: 'mine' },
-      h('p', null, h('strong', null, optionLabel(scenario, play.option))),
-      play.details.length ? h('ul', null, play.details.map((d) => h('li', null, decisionLabel(scenario, d)))) : null,
+    h('h1', null, '확정 전 반론'),
+    h('div', { class: 'mine' },
+      h('p', { class: 'mine-choice' }, ...optionText(scenario, play.option)),
+      play.details.length ? h('ul', null, play.details.map((d) => h('li', null, ...decisionText(scenario, d)))) : null,
     ),
     events.length === 0
-      ? h('p', { class: 'muted' }, '자문관들이 이의를 제기하지 않았다.')
-      : h('div', { class: 'pushbacks' },
-          h('p', { class: 'counter' }, done ? `이의 ${events.length}건을 모두 들었다` : `이의 ${i + 1} / ${events.length}`),
+      ? h('p', { class: 'muted' }, '자문관들은 반대하지 않았다.')
+      : h('ol', { class: 'objections' },
           events.slice(0, done ? events.length : i + 1).map((ev, n) =>
-            telegram({ from: ADVISOR_LABEL[ev.advisor], subject: ev.title, stamp: '異議', cls: n === i ? 'fresh' : '' }, ...paragraphs(ev.text)),
+            h('li', { class: `objection${n === i ? ' fresh' : ''}` },
+              h('p', { class: 'objection-who' }, ADVISOR_LABEL[ev.advisor]),
+              h('h3', null, ...redacted(scenario, ev.title)),
+              h('blockquote', null, ...prose(scenario, ev.text)),
+            ),
           ),
         ),
     done
       ? h('div', { class: 'afterthought' },
           h('label', { class: 'reason' },
-            h('span', { class: 'reason-label' }, '이의를 듣고 덧붙일 생각 (선택)'),
+            h('span', { class: 'reason-label' }, '반론을 듣고 덧붙일 생각 (선택)'),
             h('textarea', {
               rows: 4,
-              placeholder: '사절은? 본국 여론은? 결정은 이미 봉인되었다. 생각이 바뀌었다면 여기에 남겨라.',
+              placeholder: '결정은 바꿀 수 없다. 생각이 달라졌다면 여기에 남겨라.',
               value: play.afterthought,
               oninput: (e: Event) => ctx.commit((p) => (p.afterthought = (e.target as HTMLTextAreaElement).value), { rerender: false }),
             }),
           ),
-          h('button', { class: 'btn primary', onclick: finish }, '봉투를 열어 정체를 확인한다'),
+          h('div', { class: 'actions' }, h('button', { class: 'btn', onclick: finish }, '정체 공개')),
         )
-      : h('button', { class: 'btn primary', onclick: () => ctx.commit((p) => (p.pushbackIndex = i + 1)) },
-          i + 1 < events.length ? '다음 이의' : '이의를 모두 들었다'),
+      : h('div', { class: 'actions' },
+          h('button', { class: 'btn', onclick: () => ctx.commit((p) => (p.pushbackIndex = i + 1)) },
+            i + 1 < events.length ? '다음 반론' : '반론 다 들음'),
+        ),
   );
 }

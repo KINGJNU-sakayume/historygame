@@ -16,12 +16,12 @@ export function records(): HTMLElement {
             .reverse()
             .map((p) =>
               h('li', null,
-                h('strong', null, `제${p.scenarioId}호 ${titles.get(p.scenarioId) ?? ''}`),
+                h('strong', null, `사건 ${p.scenarioId} ${titles.get(p.scenarioId) ?? ''}`),
                 h('span', { class: 'muted' }, ` ${new Date(p.finishedAt ?? p.startedAt).toLocaleDateString('ko-KR')}`),
-                p.tags.length ? h('ul', { class: 'tags' }, p.tags.map((t) => h('li', null, t))) : null,
+                p.tags.length ? h('p', { class: 'tags' }, p.tags.join(', ')) : null,
               ),
             )
-        : [h('li', { class: 'muted' }, '아직 끝낸 판이 없다.')]),
+        : [h('li', { class: 'muted' }, '아직 끝낸 판이 없다. 사건 목록에서 하나를 골라 시작하라.')]),
     );
   draw();
   loadIndex().then((idx) => {
@@ -56,7 +56,7 @@ export function records(): HTMLElement {
   };
 
   return h('section', { class: 'screen records' },
-    h('h2', null, '판단 기록'),
+    h('h1', null, '판단 기록'),
     h('p', { class: 'muted' }, '기록은 이 브라우저에만 저장된다. 기기를 바꾸거나 브라우저 데이터를 지우기 전에 내보내 두라.'),
     h('div', { class: 'actions' },
       h('button', { class: 'btn', onclick: exportJson }, 'JSON 내보내기'),

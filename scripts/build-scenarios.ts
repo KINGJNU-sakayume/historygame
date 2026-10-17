@@ -8,7 +8,8 @@ import { shuffle } from '../src/engine/rng.ts';
 import type { PublicReveal, PublicScenario, ScenarioIndexEntry, Source } from '../src/types.ts';
 import { loadScenarios, ROOT, SCENARIOS_DIR } from './lib/scenarios.ts';
 
-const LETTERS = 'ABCDEF';
+// 세력 기호(A, B …)와 헷갈리지 않게 선택지에는 갑을병정을 쓴다.
+const LETTERS = ['갑', '을', '병', '정', '무', '기'];
 const src = process.argv[2] ? resolve(process.argv[2]) : SCENARIOS_DIR;
 const out = join(ROOT, 'public', 'scenarios');
 

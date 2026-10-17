@@ -6,9 +6,6 @@ export type AdvisorId = (typeof ADVISORS)[number];
 export const TOPICS = ['geography', 'military', 'finance', 'lineage', 'opinion', 'ally', 'enemy'] as const;
 export type TopicId = (typeof TOPICS)[number];
 
-export const CRESTS = ['anchor', 'eagle', 'lion', 'tower', 'ship', 'crown', 'star', 'cross', 'sun', 'key'] as const;
-export type CrestId = (typeof CRESTS)[number];
-
 export interface Source {
   title: string;
   url: string;
@@ -17,13 +14,12 @@ export interface Source {
 export interface Entity {
   id: string;
   label: string;
-  crest: CrestId;
 }
 
 export interface Option {
   key: string;
   text: string;
-  /** 빌드 시 셔플 후 부여되는 A~D 글자. 원본 JSON에는 없다. */
+  /** 빌드 시 셔플 후 부여되는 갑·을·병·정. 원본 JSON에는 없다. */
   letter?: string;
 }
 

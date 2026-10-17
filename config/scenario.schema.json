@@ -4,49 +4,126 @@
   "title": "마스킹 역사 판단 게임 시나리오",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "masked", "dossier", "pushbacks", "tags", "reveal"],
+  "required": [
+    "id",
+    "masked",
+    "dossier",
+    "pushbacks",
+    "tags",
+    "reveal"
+  ],
   "definitions": {
-    "nonEmpty": { "type": "string", "minLength": 1 },
-    "idList": { "type": "array", "items": { "$ref": "#/definitions/nonEmpty" } },
-    "advisor": { "enum": ["foreign", "general", "finance", "spymaster", "chamberlain"] },
-    "topic": { "enum": ["geography", "military", "finance", "lineage", "opinion", "ally", "enemy"] },
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "idList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/nonEmpty"
+      }
+    },
+    "advisor": {
+      "enum": [
+        "foreign",
+        "general",
+        "finance",
+        "spymaster",
+        "chamberlain"
+      ]
+    },
+    "topic": {
+      "enum": [
+        "geography",
+        "military",
+        "finance",
+        "lineage",
+        "opinion",
+        "ally",
+        "enemy"
+      ]
+    },
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["title", "url"],
+      "required": [
+        "title",
+        "url"
+      ],
       "properties": {
-        "title": { "$ref": "#/definitions/nonEmpty" },
-        "url": { "type": "string", "pattern": "^https?://" }
+        "title": {
+          "$ref": "#/definitions/nonEmpty"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https?://"
+        }
       }
     },
     "tagMap": {
       "type": "object",
-      "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/nonEmpty" } }
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/nonEmpty"
+        }
+      }
     }
   },
   "properties": {
-    "$comment": { "type": "string" },
-    "id": { "type": "string", "pattern": "^[0-9]{3}$" },
+    "$comment": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9]{3}$"
+    },
     "masked": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["title", "role", "situation", "entities", "options", "decisions"],
+      "required": [
+        "title",
+        "role",
+        "situation",
+        "entities",
+        "options",
+        "decisions"
+      ],
       "properties": {
-        "title": { "$ref": "#/definitions/nonEmpty" },
-        "role": { "$ref": "#/definitions/nonEmpty" },
-        "situation": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/nonEmpty" } },
-        "map_svg": { "type": "string", "pattern": "^[a-z0-9_-]+\\.svg$" },
+        "title": {
+          "$ref": "#/definitions/nonEmpty"
+        },
+        "role": {
+          "$ref": "#/definitions/nonEmpty"
+        },
+        "situation": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/nonEmpty"
+          }
+        },
+        "map_svg": {
+          "type": "string",
+          "pattern": "^[a-z0-9_-]+\\.svg$"
+        },
         "entities": {
           "type": "array",
           "minItems": 1,
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["id", "label", "crest"],
+            "required": [
+              "id",
+              "label"
+            ],
             "properties": {
-              "id": { "$ref": "#/definitions/nonEmpty" },
-              "label": { "$ref": "#/definitions/nonEmpty" },
-              "crest": { "enum": ["anchor", "eagle", "lion", "tower", "ship", "crown", "star", "cross", "sun", "key"] }
+              "id": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "label": {
+                "$ref": "#/definitions/nonEmpty"
+              }
             }
           }
         },
@@ -57,10 +134,18 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["key", "text"],
+            "required": [
+              "key",
+              "text"
+            ],
             "properties": {
-              "key": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
-              "text": { "$ref": "#/definitions/nonEmpty" }
+              "key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "text": {
+                "$ref": "#/definitions/nonEmpty"
+              }
             }
           }
         },
@@ -69,15 +154,29 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["id", "group", "label"],
+            "required": [
+              "id",
+              "group",
+              "label"
+            ],
             "properties": {
-              "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
-              "group": { "$ref": "#/definitions/nonEmpty" },
-              "label": { "$ref": "#/definitions/nonEmpty" }
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "group": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "label": {
+                "$ref": "#/definitions/nonEmpty"
+              }
             }
           }
         },
-        "inquiry_limit": { "type": "integer", "minimum": 1 }
+        "inquiry_limit": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     },
     "dossier": {
@@ -86,16 +185,47 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "advisor", "topic", "title", "text", "reliability", "sources"],
+        "required": [
+          "id",
+          "advisor",
+          "topic",
+          "title",
+          "text",
+          "reliability",
+          "sources"
+        ],
         "properties": {
-          "id": { "type": "string", "pattern": "^c[0-9]{2,}$" },
-          "advisor": { "$ref": "#/definitions/advisor" },
-          "topic": { "$ref": "#/definitions/topic" },
-          "title": { "$ref": "#/definitions/nonEmpty" },
-          "text": { "$ref": "#/definitions/nonEmpty" },
-          "reliability": { "type": "number", "minimum": 0, "maximum": 1 },
-          "misreport": { "$ref": "#/definitions/nonEmpty" },
-          "sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/source" } }
+          "id": {
+            "type": "string",
+            "pattern": "^c[0-9]{2,}$"
+          },
+          "advisor": {
+            "$ref": "#/definitions/advisor"
+          },
+          "topic": {
+            "$ref": "#/definitions/topic"
+          },
+          "title": {
+            "$ref": "#/definitions/nonEmpty"
+          },
+          "text": {
+            "$ref": "#/definitions/nonEmpty"
+          },
+          "reliability": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "misreport": {
+            "$ref": "#/definitions/nonEmpty"
+          },
+          "sources": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/definitions/source"
+            }
+          }
         }
       }
     },
@@ -104,71 +234,144 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "when", "advisor", "title", "text"],
+        "required": [
+          "id",
+          "when",
+          "advisor",
+          "title",
+          "text"
+        ],
         "properties": {
-          "id": { "$ref": "#/definitions/nonEmpty" },
+          "id": {
+            "$ref": "#/definitions/nonEmpty"
+          },
           "when": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "option": { "$ref": "#/definitions/idList" },
-              "all": { "$ref": "#/definitions/idList" },
-              "any": { "$ref": "#/definitions/idList" },
-              "none": { "$ref": "#/definitions/idList" }
+              "option": {
+                "$ref": "#/definitions/idList"
+              },
+              "all": {
+                "$ref": "#/definitions/idList"
+              },
+              "any": {
+                "$ref": "#/definitions/idList"
+              },
+              "none": {
+                "$ref": "#/definitions/idList"
+              }
             }
           },
-          "advisor": { "$ref": "#/definitions/advisor" },
-          "title": { "$ref": "#/definitions/nonEmpty" },
-          "text": { "$ref": "#/definitions/nonEmpty" }
+          "advisor": {
+            "$ref": "#/definitions/advisor"
+          },
+          "title": {
+            "$ref": "#/definitions/nonEmpty"
+          },
+          "text": {
+            "$ref": "#/definitions/nonEmpty"
+          }
         }
       }
     },
     "tags": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["options"],
+      "required": [
+        "options"
+      ],
       "properties": {
-        "options": { "$ref": "#/definitions/tagMap" },
-        "decisions": { "$ref": "#/definitions/tagMap" }
+        "options": {
+          "$ref": "#/definitions/tagMap"
+        },
+        "decisions": {
+          "$ref": "#/definitions/tagMap"
+        }
       }
     },
     "reveal": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["who", "identities", "redact", "actual_choice", "actual_reasoning", "outcome", "counterfactuals", "sources"],
+      "required": [
+        "who",
+        "identities",
+        "redact",
+        "actual_choice",
+        "actual_reasoning",
+        "outcome",
+        "counterfactuals",
+        "sources"
+      ],
       "properties": {
-        "who": { "$ref": "#/definitions/nonEmpty" },
+        "who": {
+          "$ref": "#/definitions/nonEmpty"
+        },
         "identities": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["entity", "name"],
+            "required": [
+              "entity",
+              "name"
+            ],
             "properties": {
-              "entity": { "$ref": "#/definitions/nonEmpty" },
-              "name": { "$ref": "#/definitions/nonEmpty" }
+              "entity": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "name": {
+                "$ref": "#/definitions/nonEmpty"
+              }
             }
           }
         },
-        "redact": { "type": "array", "items": { "$ref": "#/definitions/nonEmpty" } },
-        "actual_choice": { "$ref": "#/definitions/nonEmpty" },
-        "actual_details": { "$ref": "#/definitions/idList" },
-        "actual_reasoning": { "$ref": "#/definitions/nonEmpty" },
-        "outcome": { "$ref": "#/definitions/nonEmpty" },
+        "redact": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/nonEmpty"
+          }
+        },
+        "actual_choice": {
+          "$ref": "#/definitions/nonEmpty"
+        },
+        "actual_details": {
+          "$ref": "#/definitions/idList"
+        },
+        "actual_reasoning": {
+          "$ref": "#/definitions/nonEmpty"
+        },
+        "outcome": {
+          "$ref": "#/definitions/nonEmpty"
+        },
         "counterfactuals": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["option", "text"],
+            "required": [
+              "option",
+              "text"
+            ],
             "properties": {
-              "option": { "$ref": "#/definitions/nonEmpty" },
-              "text": { "$ref": "#/definitions/nonEmpty" }
+              "option": {
+                "$ref": "#/definitions/nonEmpty"
+              },
+              "text": {
+                "$ref": "#/definitions/nonEmpty"
+              }
             }
           }
         },
-        "misreport_notes": { "$ref": "#/definitions/nonEmpty" },
-        "sources": { "type": "array", "items": { "$ref": "#/definitions/source" } }
+        "misreport_notes": {
+          "$ref": "#/definitions/nonEmpty"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/source"
+          }
+        }
       }
     }
   }

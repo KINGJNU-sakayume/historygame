@@ -9,19 +9,11 @@ export const ADVISOR_LABEL: Record<AdvisorId, string> = {
 };
 
 export const ADVISOR_MOTTO: Record<AdvisorId, string> = {
-  foreign: '외교·동맹·사절',
-  general: '병력·요새·전황',
-  finance: '국고·세수·교역',
-  spymaster: '밀정·적국 동향',
-  chamberlain: '궁정·혈연·민심',
-};
-
-export const ADVISOR_GLYPH: Record<AdvisorId, string> = {
-  foreign: '外',
-  general: '將',
-  finance: '財',
-  spymaster: '諜',
-  chamberlain: '侍',
+  foreign: '외교, 동맹, 사절',
+  general: '병력, 요새, 전황',
+  finance: '국고, 세수, 교역',
+  spymaster: '밀정, 적국 동향',
+  chamberlain: '궁정, 혈연, 민심',
 };
 
 export const TOPIC_LABEL: Record<TopicId, string> = {

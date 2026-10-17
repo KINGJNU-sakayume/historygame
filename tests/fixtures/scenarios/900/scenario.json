@@ -10,9 +10,9 @@
     ],
     "map_svg": "map.svg",
     "entities": [
-      { "id": "A", "label": "강변 왕국", "crest": "tower" },
-      { "id": "B", "label": "강 건너 왕국", "crest": "lion" },
-      { "id": "C", "label": "바다 동맹", "crest": "ship" }
+      { "id": "A", "label": "강변 왕국" },
+      { "id": "B", "label": "강 건너 왕국" },
+      { "id": "C", "label": "바다 동맹" }
     ],
     "options": [
       { "key": "fight", "text": "국경에서 맞선다" },

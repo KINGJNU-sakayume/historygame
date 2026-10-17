@@ -17,8 +17,8 @@ const app = document.getElementById('app')!;
 function frame(...content: (Node | null)[]) {
   app.replaceChildren(
     h('header', { class: 'masthead' },
-      h('a', { href: '#/', class: 'brand' }, h('span', { class: 'brand-mark', 'aria-hidden': 'true' }, '密'), '역사의 봉투'),
-      h('a', { href: '#/records', class: 'nav-link' }, '기록'),
+      h('a', { href: '#/', class: 'brand' }, '역사의 봉투'),
+      h('nav', null, h('a', { href: '#/' }, '사건'), h('a', { href: '#/records' }, '기록')),
     ),
     h('main', null, ...content),
   );
@@ -68,7 +68,7 @@ async function route() {
     else if (name === 'records') frame(records());
     else frame(list());
   } catch (e) {
-    frame(h('p', { class: 'error' }, `불러오지 못했다: ${(e as Error).message}`), h('a', { href: '#/', class: 'btn' }, '문서함으로'));
+    frame(h('p', { class: 'error' }, `불러오지 못했다: ${(e as Error).message}`), h('a', { href: '#/', class: 'btn' }, '사건 목록'));
   }
 }
 
