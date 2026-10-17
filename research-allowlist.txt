@@ -1,0 +1,75 @@
+# 출처·조사 허용 도메인 (한 줄에 하나, # 이후는 주석)
+# check-urls 도메인 검사와 클라우드 환경 네트워크 허용 목록이 함께 쓴다.
+# 넣지 않는 것: 나무위키, 개인 블로그, SNS, 커뮤니티 게시판.
+
+# 백과·위키 (위키백과는 출처 추적용, 단독 근거 금지)
+en.wikipedia.org
+ko.wikipedia.org
+fr.wikipedia.org
+pt.wikipedia.org
+de.wikipedia.org
+es.wikipedia.org
+ja.wikipedia.org
+ru.wikipedia.org
+en.wikisource.org
+commons.wikimedia.org
+www.wikidata.org
+www.britannica.com
+www.worldhistory.org
+
+# 1차 사료·디지털 아카이브
+archive.org
+web.archive.org
+www.gutenberg.org
+avalon.law.yale.edu
+sourcebooks.fordham.edu
+www.loc.gov
+www.nationalarchives.gov.uk
+www.europeana.eu
+gallica.bnf.fr
+www.hathitrust.org
+babel.hathitrust.org
+history.state.gov
+digitalarchive.wilsoncenter.org
+www.perseus.tufts.edu
+
+# 학술
+www.jstor.org
+doi.org
+api.crossref.org
+api.openalex.org
+www.semanticscholar.org
+core.ac.uk
+www.cambridge.org
+academic.oup.com
+muse.jhu.edu
+www.persee.fr
+www.scielo.br
+
+# 지도·통계
+www.davidrumsey.com
+omniatlas.com
+ourworldindata.org
+clio-infra.eu
+www.rug.nl
+
+# 나폴레옹 시대
+www.napoleon.org
+www.napoleon-series.org
+
+# 한국사
+encykorea.aks.ac.kr
+db.history.go.kr
+sillok.history.go.kr
+www.itkc.or.kr
+www.history.go.kr
+kyujanggak.snu.ac.kr
+www.nl.go.kr
+www.riss.kr
+www.kci.go.kr
+
+# 교양 매체
+www.historytoday.com
+www.smithsonianmag.com
+theconversation.com
+www.bbc.co.uk

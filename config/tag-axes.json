@@ -1,0 +1,10 @@
+{
+  "$comment": "판단 성향 축. 축은 고정하고 판이 쌓이면 추가한다. 시나리오 tags의 값은 아래 poles 중 하나여야 하며, 아니면 검증기가 경고한다.",
+  "axes": [
+    { "id": "risk", "label": "위험", "poles": ["위험회피", "위험선호"] },
+    { "id": "alliance", "label": "동맹", "poles": ["동맹신뢰", "자주"] },
+    { "id": "justification", "label": "명분과 실리", "poles": ["명분", "실리"] },
+    { "id": "change", "label": "변화", "poles": ["현상유지", "변혁"] },
+    { "id": "horizon", "label": "시간 지평", "poles": ["단기수습", "장기포석"] }
+  ]
+}

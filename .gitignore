@@ -1,0 +1,9 @@
+node_modules/
+dist/
+public/scenarios/
+report.md
+linkrot-report.json
+test-results/
+playwright-report/
+*.log
+.DS_Store

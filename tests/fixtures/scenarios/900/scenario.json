@@ -1,0 +1,62 @@
+{
+  "$comment": "테스트용 가상 시나리오. 역사 사실이 아니다.",
+  "id": "900",
+  "masked": {
+    "title": "강 건너의 두 왕국",
+    "role": "당신은 왕국 A의 재상이다.",
+    "situation": [
+      "강 건너 왕국 B가 국경에 병력을 모으고 있다.",
+      "먼 바다의 동맹 C는 원군을 약속했지만 아직 소식이 없다."
+    ],
+    "map_svg": "map.svg",
+    "entities": [
+      { "id": "A", "label": "강변 왕국", "crest": "tower" },
+      { "id": "B", "label": "강 건너 왕국", "crest": "lion" },
+      { "id": "C", "label": "바다 동맹", "crest": "ship" }
+    ],
+    "options": [
+      { "key": "fight", "text": "국경에서 맞선다" },
+      { "key": "yield", "text": "요구를 들어준다" },
+      { "key": "flee", "text": "수도를 옮긴다" },
+      { "key": "wait", "text": "동맹의 답을 기다린다" }
+    ],
+    "decisions": [
+      { "id": "envoy_detain", "group": "사절 처리", "label": "B의 사절을 억류한다" },
+      { "id": "envoy_release", "group": "사절 처리", "label": "B의 사절을 돌려보낸다" },
+      { "id": "mobilize", "group": "병력", "label": "예비군을 소집한다" }
+    ],
+    "inquiry_limit": 3
+  },
+  "dossier": [
+    { "id": "c01", "advisor": "general", "topic": "military", "title": "병력 비교", "text": "B의 병력이 우리보다 두 배 많다.", "reliability": 0.9, "sources": [{ "title": "가상", "url": "https://en.wikipedia.org/wiki/Example" }] },
+    { "id": "c02", "advisor": "general", "topic": "military", "title": "요새 상태", "text": "국경 요새는 낡았다.", "reliability": 1, "sources": [{ "title": "가상", "url": "https://en.wikipedia.org/wiki/Example" }] },
+    { "id": "c03", "advisor": "spymaster", "topic": "enemy", "title": "B의 내부", "text": "B의 왕은 병을 앓고 있다.", "reliability": 0.5, "misreport": "B의 왕은 건강하다.", "sources": [{ "title": "가상", "url": "https://en.wikipedia.org/wiki/Example" }] },
+    { "id": "c04", "advisor": "foreign", "topic": "ally", "title": "동맹 C", "text": "C의 함대는 한 달 뒤 도착한다.", "reliability": 0.8, "sources": [{ "title": "가상", "url": "https://en.wikipedia.org/wiki/Example" }] },
+    { "id": "c05", "advisor": "finance", "topic": "finance", "title": "국고", "text": "국고는 석 달 버틸 수 있다.", "reliability": 1, "sources": [{ "title": "가상", "url": "https://en.wikipedia.org/wiki/Example" }] }
+  ],
+  "pushbacks": [
+    { "id": "p_flee_envoy", "when": { "option": ["flee"], "none": ["envoy_detain", "envoy_release"] }, "advisor": "foreign", "title": "사절 문제", "text": "수도를 옮기는 동안 B의 사절은 어떻게 할 것인가?" },
+    { "id": "p_fight_nomob", "when": { "option": ["fight"], "none": ["mobilize"] }, "advisor": "general", "title": "병력 부족", "text": "예비군 없이 맞서면 한 번의 패배로 끝난다." },
+    { "id": "p_detain", "when": { "all": ["envoy_detain"] }, "advisor": "chamberlain", "title": "명분 문제", "text": "사절 억류는 B에게 전쟁 명분을 준다." }
+  ],
+  "tags": {
+    "options": { "fight": ["위험선호"], "yield": ["위험회피", "실리"], "flee": ["장기포석", "변혁"], "wait": ["동맹신뢰"] },
+    "decisions": { "envoy_detain": ["명분"], "mobilize": ["위험선호"] }
+  },
+  "reveal": {
+    "who": "가상 왕국 Testland",
+    "identities": [
+      { "entity": "A", "name": "Testland" },
+      { "entity": "B", "name": "Fakeria" },
+      { "entity": "C", "name": "Mockshire" }
+    ],
+    "redact": ["테스트랜드", "Riverton"],
+    "actual_choice": "flee",
+    "actual_details": ["envoy_release"],
+    "actual_reasoning": "가상의 재상은 1888년에 수도를 옮겼다.",
+    "outcome": "가상 결과.",
+    "counterfactuals": [{ "option": "fight", "text": "맞섰다면 졌을 것이다(추정)." }],
+    "misreport_notes": "첩보 책임자의 B 왕 건강 보고는 판에 따라 틀렸다.",
+    "sources": [{ "title": "가상", "url": "https://en.wikipedia.org/wiki/Example" }]
+  }
+}
