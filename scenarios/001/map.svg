@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" role="img" aria-label="판세 모식도: 서쪽 바닷가의 A, 동쪽의 D, 북동쪽의 B, 북쪽 바다의 섬 C, 남서쪽 대양 너머의 E">
+  <title>판세 모식도</title>
+  <defs>
+    <pattern id="waves" width="16" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 6 Q4 2 8 6 T16 6" fill="none" stroke="#8aa3b3" stroke-width="0.8" opacity="0.5"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8c2a1c"/>
+    </marker>
+    <marker id="arrow-sea" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2b4a63"/>
+    </marker>
+  </defs>
+
+  <!-- 바다 -->
+  <rect width="400" height="320" fill="#cfd9d6"/>
+  <rect width="400" height="320" fill="url(#waves)"/>
+
+  <!-- 섬나라 C (북쪽 바다) -->
+  <path d="M120 18 L150 10 L172 22 L168 46 L150 60 L128 54 L116 36 Z" fill="#e8d9b5" stroke="#2b2118" stroke-width="1.2"/>
+  <text x="142" y="40" font-size="16" font-weight="700" text-anchor="middle" fill="#2b2118">C</text>
+
+  <!-- 대륙: B (북동쪽) -->
+  <path d="M250 60 L400 40 L400 150 L300 150 L262 128 Z" fill="#e3d0a4" stroke="#2b2118" stroke-width="1.2"/>
+  <text x="340" y="100" font-size="16" font-weight="700" text-anchor="middle" fill="#2b2118">B</text>
+
+  <!-- 산맥 (B와 D 사이) -->
+  <path d="M262 132 l8 -10 l8 10 l8 -12 l8 12 l8 -9 l8 9 l8 -11 l8 11" fill="none" stroke="#6b5a45" stroke-width="1.2"/>
+
+  <!-- 반도: D (동쪽, 넓다) -->
+  <path d="M190 140 L262 132 L300 152 L320 200 L300 268 L230 290 L196 270 Z" fill="#e8d9b5" stroke="#2b2118" stroke-width="1.2"/>
+  <text x="262" y="215" font-size="16" font-weight="700" text-anchor="middle" fill="#2b2118">D</text>
+
+  <!-- 해안 소국 A (서쪽 바닷가) -->
+  <path d="M168 146 L190 140 L196 270 L176 282 L158 250 L164 210 L156 184 Z" fill="#f2e6c9" stroke="#2b2118" stroke-width="1.6"/>
+  <text x="178" y="172" font-size="16" font-weight="700" text-anchor="middle" fill="#2b2118">A</text>
+
+  <!-- 큰 강 (D에서 A의 수도로) -->
+  <path d="M280 196 C250 204 230 210 200 214 C186 216 176 222 162 226" fill="none" stroke="#5c7f99" stroke-width="2.4"/>
+
+  <!-- 수도 -->
+  <g transform="translate(166 228)">
+    <path d="M0 -7 L2 -2 L7 -2 L3 1 L5 6 L0 3 L-5 6 L-3 1 L-7 -2 L-2 -2 Z" fill="#8c2a1c"/>
+  </g>
+  <text x="150" y="246" font-size="9" text-anchor="end" fill="#2b2118">수도</text>
+
+  <!-- 적군 진격로: B → D를 지나 강을 따라 → A의 수도 -->
+  <path d="M300 140 C292 170 286 186 270 198 C246 206 220 210 182 220" fill="none" stroke="#8c2a1c" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+  <text x="296" y="168" font-size="9" fill="#8c2a1c">B군</text>
+
+  <!-- 강어귀의 C 함대 -->
+  <g transform="translate(138 224)" fill="#2b4a63">
+    <path d="M-8 2 L8 2 L5 6 L-5 6 Z"/>
+    <path d="M0 -8 L0 2 M0 -7 L6 0 L0 0" fill="none" stroke="#2b4a63" stroke-width="1.2"/>
+  </g>
+  <text x="122" y="214" font-size="9" text-anchor="end" fill="#2b4a63">C 함대</text>
+
+  <!-- 강 안의 F 함대 -->
+  <g transform="translate(186 214) scale(0.7)" fill="#6b5a45">
+    <path d="M-8 2 L8 2 L5 6 L-5 6 Z"/>
+    <path d="M0 -8 L0 2 M0 -7 L6 0 L0 0" fill="none" stroke="#6b5a45" stroke-width="1.6"/>
+  </g>
+  <text x="196" y="204" font-size="9" fill="#6b5a45">F 함대</text>
+
+  <!-- 대양 너머 E (남서쪽, 축척 무시) -->
+  <path d="M8 268 L58 258 L74 290 L56 314 L14 314 Z" fill="#e3d0a4" stroke="#2b2118" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <text x="40" y="292" font-size="16" font-weight="700" text-anchor="middle" fill="#2b2118">E</text>
+  <path d="M132 236 C100 250 86 262 72 272" fill="none" stroke="#2b4a63" stroke-width="1.4" stroke-dasharray="2 3" marker-end="url(#arrow-sea)"/>
+  <text x="96" y="272" font-size="8" text-anchor="middle" fill="#2b4a63" transform="rotate(-28 96 272)">대양 건너</text>
+
+  <!-- 나침반 -->
+  <g transform="translate(372 286)" fill="none" stroke="#2b2118" stroke-width="1">
+    <circle r="14"/>
+    <path d="M0 -12 L3 0 L0 12 L-3 0 Z" fill="#2b2118"/>
+    <text y="-17" font-size="9" text-anchor="middle" fill="#2b2118" stroke="none">북</text>
+  </g>
+
+  <text x="8" y="14" font-size="8" fill="#5a4a3a">축척·모양은 실제와 다르다</text>
+</svg>
