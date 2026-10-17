@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 330" role="img" font-family="'IBM Plex Sans KR', sans-serif" aria-label="A의 가까운 섬나라 C에 경쟁 강국 B가 무기를 보냈다. A는 C에 대한 대응을 검토한다. A의 동맹국 D는 B와 국경을 맞댄다. 점선 원은 바다 건너의 세력이며 위치는 실제 지리와 다르다.">
+<title>가까운 섬과 먼 강국, 해외 동맹국의 관계</title>
+<defs><marker id="e4pressure" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1f2733"/></marker><marker id="e4ship" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#57616d"/></marker></defs>
+<rect width="400" height="330" fill="#eef1ee"/>
+<circle cx="90" cy="88" r="52" fill="#f2b530" stroke="#1f2733" stroke-width="1.5"/>
+<circle cx="270" cy="78" r="52" fill="#f3f5f2" stroke="#1f2733" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="270" cy="168" r="38" fill="#f3f5f2" stroke="#1f2733" stroke-width="1.5"/>
+<circle cx="100" cy="230" r="24" fill="#f3f5f2" stroke="#1f2733" stroke-width="1.5" stroke-dasharray="4 3"/>
+<path d="M88 145 L96 200" fill="none" stroke="#1f2733" stroke-width="1.7" marker-end="url(#e4pressure)"/>
+<text x="49" y="173" font-size="10" fill="#1f2733" text-anchor="middle">대응 검토</text>
+<path d="M214 81 C163 88 175 190 126 221" fill="none" stroke="#57616d" stroke-width="1.5" stroke-dasharray="3 4" marker-end="url(#e4ship)"/>
+<text x="191" y="205" font-size="10" fill="#57616d">무기 반입</text>
+<g text-anchor="middle" fill="#1f2733" font-size="21" font-weight="600"><text x="90" y="91">A</text><text x="270" y="81">B</text><text x="270" y="172">D</text><text x="100" y="237" font-size="18">C</text></g>
+<g text-anchor="middle" fill="#57616d" font-size="10"><text x="90" y="113">우리</text><text x="270" y="104">경쟁 강국</text><text x="270" y="193">A의 동맹</text><text x="100" y="273">B와 협력</text><text x="270" y="240">B와 D는 국경 접촉</text></g>
+<text x="200" y="296" font-size="9" text-anchor="middle" fill="#57616d">점선 원: 바다 건너. 실선 화살표: 대응 검토 방향.</text>
+<text x="200" y="318" font-size="8.8" text-anchor="middle" fill="#57616d">원 크기는 국력, 맞닿은 원은 국경을 맞댄 나라. 위치는 실제 지리와 무관하다.</text>
+</svg>
