@@ -10,7 +10,7 @@
     ],
     "map_svg": "map.svg",
     "entities": [
-      { "id": "A", "label": "강변 왕국" },
+      { "id": "A", "label": "강변 왕국", "self": true },
       { "id": "B", "label": "강 건너 왕국" },
       { "id": "C", "label": "바다 동맹" }
     ],

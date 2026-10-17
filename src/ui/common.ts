@@ -19,35 +19,42 @@ export function decisionLabel(scenario: PublicScenario, id: string): string {
 }
 
 function entityPattern(scenario: PublicScenario): RegExp | null {
-  const ids = scenario.masked.entities.map((e) => e.id).sort((a, b) => b.length - a.length);
+  const ids = scenario.masked.entities.map((e) => e.id);
   if (ids.length === 0) return null;
-  const alt = ids.map((id) => id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
-  return new RegExp(`(?<![A-Za-z0-9])(${alt})(?![A-Za-z0-9])`, 'g');
+  return new RegExp(`(?<![A-Za-z0-9])(${ids.join('|')})(?![A-Za-z0-9])`, 'g');
 }
 
-/**
- * 본문 속 세력 기호(A, B …)를 검은 가림 막대로 바꾼다.
- * names를 주면 막대가 걷히며 실명이 드러난다(공개 화면).
- */
-export function redacted(scenario: PublicScenario, text: string, names?: Record<string, string>): Child[] {
+export interface EntOpts {
+  /** 공개 화면: 기호 대신 실명(작은 기호 첨자와 함께) */
+  names?: Record<string, string>;
+  /** 이 묶음(보고 한 건, 선택지 하나 …)에서 이미 풀이를 단 기호. 처음 나오는 기호에만 풀이를 붙인다. */
+  gloss?: Set<string>;
+}
+
+/** 첫 언급 풀이용 짧은 설명. 플레이어의 나라는 '우리'. */
+function glossOf(scenario: PublicScenario, id: string): string {
+  const e = scenario.masked.entities.find((x) => x.id === id);
+  return e?.self ? '우리' : (e?.label ?? id);
+}
+
+/** 본문 속 세력 기호(A, B …)를 표시한다. 가리지 않고 기호로 치환된 글자 그대로 보여 준다. */
+export function ents(scenario: PublicScenario, text: string, opts: EntOpts = {}): Child[] {
   const re = entityPattern(scenario);
   if (!re) return [text];
   const out: Child[] = [];
   let last = 0;
-  let n = 0;
   for (const m of text.matchAll(re)) {
     out.push(text.slice(last, m.index));
     const id = m[1];
-    const label = scenario.masked.entities.find((e) => e.id === id)?.label ?? id;
-    if (names?.[id]) {
-      out.push(
-        h('span', { class: 'lift', style: `--i:${n++}` },
-          h('span', { class: 'lift-name' }, names[id]),
-          h('span', { class: 'bar', 'aria-hidden': 'true' }, id),
-        ),
-      );
+    const self = scenario.masked.entities.find((e) => e.id === id)?.self ? ' self' : '';
+    if (opts.names?.[id]) {
+      out.push(h('span', { class: `ent named${self}` }, opts.names[id], h('sup', null, id)));
     } else {
-      out.push(h('span', { class: 'bar', title: label }, id));
+      out.push(h('span', { class: `ent${self}`, title: glossOf(scenario, id) }, id));
+      if (opts.gloss && !opts.gloss.has(id)) {
+        opts.gloss.add(id);
+        out.push(h('span', { class: 'gloss' }, `(${glossOf(scenario, id)})`));
+      }
     }
     last = m.index + m[0].length;
   }
@@ -55,23 +62,23 @@ export function redacted(scenario: PublicScenario, text: string, names?: Record<
   return out;
 }
 
-/** 빈 줄로 나눈 문단, 세력 기호는 가림 막대로 */
-export function prose(scenario: PublicScenario, text: string, names?: Record<string, string>): HTMLElement[] {
+/** 빈 줄로 나눈 문단. opts.gloss는 문단들 사이에 이어진다. */
+export function prose(scenario: PublicScenario, text: string, opts: EntOpts = {}): HTMLElement[] {
   return text
     .split(/\n{2,}/)
     .map((p) => p.trim())
     .filter(Boolean)
-    .map((p) => h('p', null, ...redacted(scenario, p, names)));
+    .map((p) => h('p', null, ...ents(scenario, p, opts)));
 }
 
-export function optionText(scenario: PublicScenario, key: string | null, names?: Record<string, string>): Child[] {
+export function optionText(scenario: PublicScenario, key: string | null, opts: EntOpts = {}): Child[] {
   const o = optionOf(scenario, key);
   if (!o) return ['—'];
-  return [h('span', { class: 'letter' }, o.letter ?? ''), ...redacted(scenario, o.text, names)];
+  return [h('span', { class: 'letter' }, o.letter ?? ''), ...ents(scenario, o.text, opts)];
 }
 
-export function decisionText(scenario: PublicScenario, id: string, names?: Record<string, string>): Child[] {
-  return redacted(scenario, decisionLabel(scenario, id), names);
+export function decisionText(scenario: PublicScenario, id: string, opts: EntOpts = {}): Child[] {
+  return ents(scenario, decisionLabel(scenario, id), opts);
 }
 
 export function legend(scenario: PublicScenario, names?: Record<string, string>) {
@@ -80,11 +87,20 @@ export function legend(scenario: PublicScenario, names?: Record<string, string>)
     { class: 'legend' },
     scenario.masked.entities.map((e) =>
       h('div', null,
-        h('dt', null, h('span', { class: names ? 'bar open' : 'bar' }, e.id)),
-        h('dd', null, ...redacted(scenario, e.label), names?.[e.id] ? h('strong', null, names[e.id]) : null),
+        h('dt', null, h('span', { class: `ent${e.self ? ' self' : ''}` }, e.id)),
+        h('dd', null,
+          ...ents(scenario, e.label),
+          e.self ? h('span', { class: 'gloss' }, '(당신의 나라)') : null,
+          names?.[e.id] ? h('strong', null, names[e.id]) : null,
+        ),
       ),
     ),
   );
+}
+
+/** 탐문·결정·반론 화면에서 언제든 펼쳐 보는 기호 풀이 */
+export function keyPanel(scenario: PublicScenario) {
+  return h('details', { class: 'key' }, h('summary', null, '기호 풀이'), legend(scenario));
 }
 
 export function situation(scenario: PublicScenario, mapSvg: string | null) {
@@ -93,7 +109,7 @@ export function situation(scenario: PublicScenario, mapSvg: string | null) {
   return h(
     'div',
     { class: 'situation' },
-    h('p', { class: 'role' }, ...redacted(scenario, scenario.masked.role)),
+    h('p', { class: 'role' }, ...ents(scenario, scenario.masked.role)),
     ...scenario.masked.situation.flatMap((p) => prose(scenario, p)),
     map,
     legend(scenario),

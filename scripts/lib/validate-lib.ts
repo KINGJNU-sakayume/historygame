@@ -2,7 +2,7 @@ import Ajv from 'ajv';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { Scenario } from '../../src/types.ts';
-import { findLeaks } from './leak.ts';
+import { findLeaks, maskedTexts } from './leak.ts';
 import { ROOT, type LoadedScenario } from './scenarios.ts';
 
 export interface Findings {
@@ -60,6 +60,16 @@ function checkRefs(s: Scenario, dirName: string, dir: string, f: Findings) {
     if (!entities.includes(i.entity)) err(`reveal.identities: 없는 세력 "${i.entity}"`);
   }
   if (s.masked.map_svg && !existsSync(join(dir, s.masked.map_svg))) err(`지도 파일 없음: ${s.masked.map_svg}`);
+  if (s.masked.entities.filter((e) => e.self).length > 1) err('self(플레이어의 나라)는 하나만 둘 수 있다');
+
+  // 정의되지 않은 대문자 한 글자는 세력 기호로 오인된다
+  const stray = new Map<string, string>();
+  for (const { path, text } of maskedTexts(s, null)) {
+    for (const m of text.matchAll(/(?<![A-Za-z0-9])([A-Z])(?![A-Za-z0-9])/g)) {
+      if (!entities.includes(m[1]) && !stray.has(m[1])) stray.set(m[1], path);
+    }
+  }
+  for (const [letter, path] of stray) warn(`정의되지 않은 기호 "${letter}" @ ${path} — masked.entities에 넣거나 다른 말로 바꿀 것`);
 
   for (const o of options) if (!s.tags.options[o]?.length) warn(`선택지 "${o}"에 성향 태그가 없다`);
   const allTags = [...Object.values(s.tags.options), ...Object.values(s.tags.decisions ?? {})].flat();

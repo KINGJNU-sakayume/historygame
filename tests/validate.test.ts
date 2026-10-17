@@ -76,6 +76,17 @@ describe('validateScenario', () => {
     expect(f.errors.some((e) => e.includes('"ghost"'))).toBe(true);
   });
 
+  it('정의되지 않은 대문자 기호는 경고', () => {
+    const f = validateScenario(clone((s) => (s.dossier[0].text = 'G의 병력이 우리보다 두 배 많다.')));
+    expect(f.errors).toEqual([]);
+    expect(f.warnings.some((w) => w.includes('"G"'))).toBe(true);
+  });
+
+  it('세력 기호는 대문자 한 글자, self는 하나만', () => {
+    expect(validateScenario(clone((s) => (s.masked.entities[1].id = 'BB'))).errors.some((e) => e.includes('스키마'))).toBe(true);
+    expect(validateScenario(clone((s) => (s.masked.entities[1].self = true))).errors.some((e) => e.includes('self'))).toBe(true);
+  });
+
   it('축 밖 태그는 경고만', () => {
     const f = validateScenario(clone((s) => (s.tags.options.fight = ['낭만'])));
     expect(f.errors).toEqual([]);

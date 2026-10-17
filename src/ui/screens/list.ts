@@ -24,9 +24,6 @@ export function list(): HTMLElement {
             h('a', { class: 'case', href: `#/play/${s.id}` },
               h('span', { class: 'case-no' }, `사건 ${s.id}`),
               h('span', { class: 'case-title' }, s.title),
-              h('span', { class: 'case-hidden', 'aria-label': '나라와 연도는 가려져 있다' },
-                h('span', { class: 'bar wide', 'aria-hidden': 'true' }), h('span', { class: 'bar', 'aria-hidden': 'true' }),
-              ),
               status ? h('span', { class: 'case-status' }, status) : null,
             ),
           );
@@ -47,8 +44,8 @@ export function list(): HTMLElement {
     );
 
   return h('section', { class: 'screen list' },
-    h('h1', null, '이름과 연도를 가린 역사의 장면들'),
-    h('p', { class: 'lede' }, '당신이 결정자다. 자문관에게 묻고, 결정하고, 가림을 걷어 실제 역사와 맞대어 본다.'),
+    h('h1', null, '나라와 인물을 기호로 바꾼 역사의 장면들'),
+    h('p', { class: 'lede' }, '당신이 결정자다. 자문관에게 묻고, 결정한 뒤, 기호 뒤의 실제 역사와 맞대어 본다.'),
     items,
     h('fieldset', { class: 'modes' },
       h('legend', null, '새 판의 탐문'),

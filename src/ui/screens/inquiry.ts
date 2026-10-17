@@ -1,6 +1,6 @@
 import { applyResult, ask, cardsFor, remaining, reportText, type InquiryResult } from '../../engine/inquiry.ts';
 import { ADVISORS, TOPICS, type AdvisorId, type Card, type PublicScenario, type TopicId } from '../../types.ts';
-import { situation, prose, redacted, type PlayCtx } from '../common.ts';
+import { ents, keyPanel, prose, situation, type PlayCtx } from '../common.ts';
 import { h } from '../dom.ts';
 import { ADVISOR_LABEL, ADVISOR_MOTTO, TOPIC_LABEL } from '../labels.ts';
 import { tally } from '../tally.ts';
@@ -12,13 +12,15 @@ let lastPlayId = '';
 
 /** 받은 보고 한 건. n은 받은 순서. */
 export function report(scenario: PublicScenario, card: Card, seed: string, n?: number, fresh = false) {
+  // 보고 한 건 안에서 처음 나오는 기호에만 풀이를 단다
+  const gloss = new Set<string>();
   return h('article', { class: `report${fresh ? ' fresh' : ''}` },
     h('p', { class: 'report-from' },
       n !== undefined ? h('span', { class: 'report-no' }, String(n)) : null,
       `${ADVISOR_LABEL[card.advisor]}, ${TOPIC_LABEL[card.topic]}에 대해`,
     ),
-    h('h3', null, ...redacted(scenario, card.title)),
-    ...prose(scenario, reportText(card, seed)),
+    h('h3', null, ...ents(scenario, card.title)),
+    ...prose(scenario, reportText(card, seed), { gloss }),
   );
 }
 
@@ -74,6 +76,7 @@ export function inquiry(ctx: PlayCtx): HTMLElement {
     { class: 'screen inquiry' },
     h('div', { class: 'toolbar' },
       tally(play.limit, play.inquiry.opened.length),
+      keyPanel(scenario),
       h('button', { class: 'btn', onclick: () => ctx.commit((p) => (p.phase = 'decision'), { top: true }) }, '결정하러 가기'),
     ),
     h('details', { class: 'recap' }, h('summary', null, '상황 다시 읽기'), situation(scenario, ctx.mapSvg)),

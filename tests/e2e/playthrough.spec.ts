@@ -13,7 +13,7 @@ test('모바일에서 한 판을 끝까지 하고, 새로고침해도 기록이 
 
   await page.getByRole('link', { name: /강 건너의 두 왕국/ }).click();
   await expect(page.locator('.role')).toContainText('의 재상이다.');
-  await expect(page.locator('.role .bar')).toHaveText('A');
+  await expect(page.locator('.role .ent.self')).toHaveText('A');
   await shot(page, '02-briefing');
   await page.getByRole('button', { name: '자문 회의 열기' }).click();
 
@@ -21,6 +21,8 @@ test('모바일에서 한 판을 끝까지 하고, 새로고침해도 기록이 
   await page.getByRole('radio', { name: /장군/ }).click();
   await page.getByRole('button', { name: '군사' }).click();
   await expect(page.locator('.answer')).toContainText('병력 비교');
+  // 보고 안에서 처음 나온 기호에만 풀이가 붙는다
+  await expect(page.locator('.answer .gloss')).toHaveText(['(강 건너 왕국)']);
   await page.getByRole('button', { name: '군사' }).click();
   await expect(page.locator('.answer')).toContainText('요새 상태');
   await page.getByRole('radio', { name: /시종/ }).click();
@@ -56,7 +58,7 @@ test('모바일에서 한 판을 끝까지 하고, 새로고침해도 기록이 
   await expect(page.locator('.side-by-side')).toContainText('병력이 열세이니');
   await expect(page.locator('.side-by-side')).toContainText('1888년');
   await expect(page.getByText('당신과 같은 길을 골랐다.')).toBeVisible();
-  await expect(page.locator('.unmask .lift-name').first()).toHaveText('Testland');
+  await expect(page.locator('.unmask .ent.named').first()).toContainText('Testland');
   await expect(page.locator('.tags').first()).toContainText('장기포석');
   await shot(page, '06-reveal');
 

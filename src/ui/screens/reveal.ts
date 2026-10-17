@@ -3,7 +3,7 @@ import { loadReveal } from '../../data.ts';
 import type { Card, PublicReveal, Source } from '../../types.ts';
 import { h, paragraphs } from '../dom.ts';
 import { ADVISOR_LABEL, TOPIC_LABEL } from '../labels.ts';
-import { decisionText, legend, optionText, prose, redacted, type PlayCtx } from '../common.ts';
+import { decisionText, ents, legend, optionText, prose, type PlayCtx } from '../common.ts';
 
 function sourceList(sources: (Source & { note?: string })[]) {
   return h('ol', { class: 'sources' },
@@ -14,7 +14,7 @@ function sourceList(sources: (Source & { note?: string })[]) {
 }
 
 export function reveal(ctx: PlayCtx, onReplay: () => void): HTMLElement {
-  const section = h('section', { class: 'screen reveal' }, h('p', { class: 'muted' }, '가림을 걷는 중…'));
+  const section = h('section', { class: 'screen reveal' }, h('p', { class: 'muted' }, '공개 자료를 여는 중…'));
   loadReveal(ctx.scenario.id)
     .then((r) => section.replaceChildren(...revealBody(ctx, r, onReplay).filter((n): n is HTMLElement => n !== null)))
     .catch((e) => section.replaceChildren(h('p', { class: 'error' }, `공개 자료를 불러오지 못했다: ${(e as Error).message}`)));
@@ -36,18 +36,18 @@ function revealBody(ctx: PlayCtx, r: PublicReveal, onReplay: () => void): (HTMLE
   );
 
   return [
-    // 단 한 번의 연출: 처음 읽었던 전문에서 가림 막대가 걷힌다
+    // 처음 읽었던 상황을 기호 대신 실명으로 다시 읽는다
     h('div', { class: 'unmask' },
       h('h1', null, r.who),
-      h('p', { class: 'role' }, ...redacted(scenario, scenario.masked.role, names)),
-      ...scenario.masked.situation.flatMap((p) => prose(scenario, p, names)),
+      h('p', { class: 'role' }, ...ents(scenario, scenario.masked.role, { names })),
+      ...scenario.masked.situation.flatMap((p) => prose(scenario, p, { names })),
     ),
     legend(scenario, names),
 
     h('h2', null, '실제로 고른 길'),
     h('div', { class: 'actual' },
-      h('p', { class: 'actual-choice' }, ...optionText(scenario, r.actual_choice, names)),
-      r.actual_details?.length ? h('ul', null, r.actual_details.map((d) => h('li', null, ...decisionText(scenario, d, names)))) : null,
+      h('p', { class: 'actual-choice' }, ...optionText(scenario, r.actual_choice, { names })),
+      r.actual_details?.length ? h('ul', null, r.actual_details.map((d) => h('li', null, ...decisionText(scenario, d, { names })))) : null,
       h('p', { class: 'verdict' }, same ? '당신과 같은 길을 골랐다.' : '당신과 다른 길을 골랐다.'),
     ),
 
@@ -55,8 +55,8 @@ function revealBody(ctx: PlayCtx, r: PublicReveal, onReplay: () => void): (HTMLE
     h('div', { class: 'side-by-side' },
       h('div', { class: 'mine' },
         h('h3', null, '당신'),
-        h('p', { class: 'mine-choice' }, ...optionText(scenario, play.option, names)),
-        play.details.length ? h('ul', null, play.details.map((d) => h('li', null, ...decisionText(scenario, d, names)))) : null,
+        h('p', { class: 'mine-choice' }, ...optionText(scenario, play.option, { names })),
+        play.details.length ? h('ul', null, play.details.map((d) => h('li', null, ...decisionText(scenario, d, { names })))) : null,
         ...paragraphs(play.reason || '(이유를 적지 않았다)'),
         play.afterthought ? h('div', { class: 'after' }, h('h4', null, '반론을 듣고 덧붙인 생각'), ...paragraphs(play.afterthought)) : null,
       ),
@@ -74,7 +74,7 @@ function revealBody(ctx: PlayCtx, r: PublicReveal, onReplay: () => void): (HTMLE
             .filter((o) => optionCf.has(o.key))
             .map((o) =>
               h('section', { class: 'cf' },
-                h('h3', null, ...optionText(scenario, o.key, names)),
+                h('h3', null, h('span', { class: 'guess' }, '추정'), ...optionText(scenario, o.key, { names })),
                 ...paragraphs(optionCf.get(o.key)!),
               ),
             ),
@@ -87,9 +87,9 @@ function revealBody(ctx: PlayCtx, r: PublicReveal, onReplay: () => void): (HTMLE
           misreported.map((c) =>
             h('div', { class: 'correction' },
               h('p', { class: 'report-from' }, `${ADVISOR_LABEL[c.advisor]}, ${TOPIC_LABEL[c.topic]}에 대해`),
-              h('h3', null, ...redacted(scenario, c.title, names)),
-              h('p', null, h('del', null, ...redacted(scenario, c.misreport!, names))),
-              h('p', null, ...redacted(scenario, c.text, names)),
+              h('h3', null, ...ents(scenario, c.title, { names })),
+              h('p', null, h('del', null, ...ents(scenario, c.misreport!, { names }))),
+              h('p', null, ...ents(scenario, c.text, { names })),
             ),
           ),
         )

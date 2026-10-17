@@ -1,5 +1,5 @@
 import { h } from '../dom.ts';
-import { redacted, type PlayCtx } from '../common.ts';
+import { ents, keyPanel, type PlayCtx } from '../common.ts';
 
 export function decision(ctx: PlayCtx): HTMLElement {
   const { scenario, play } = ctx;
@@ -7,6 +7,9 @@ export function decision(ctx: PlayCtx): HTMLElement {
   for (const d of scenario.masked.decisions) groups.set(d.group, [...(groups.get(d.group) ?? []), d]);
   // 빌드가 셔플한 순서 그대로가 갑·을·병·정 순서다
   const options = scenario.masked.options;
+  // 위에서부터 읽으므로 기호 풀이는 목록 전체에서 처음 한 번만
+  const optionGloss = new Set<string>();
+  const detailGloss = new Set<string>();
 
   const error = h('p', { class: 'error', role: 'alert', hidden: true });
   const confirm = () => {
@@ -30,6 +33,7 @@ export function decision(ctx: PlayCtx): HTMLElement {
     'section',
     { class: 'screen decision' },
     h('h1', null, '결정'),
+    keyPanel(scenario),
     h('fieldset', { class: 'options' },
       h('legend', null, '방침'),
       options.map((o) =>
@@ -42,7 +46,7 @@ export function decision(ctx: PlayCtx): HTMLElement {
             onchange: () => ctx.commit((p) => (p.option = o.key)),
           }),
           h('span', { class: 'letter' }, o.letter ?? ''),
-          h('span', { class: 'option-text' }, ...redacted(scenario, o.text)),
+          h('span', { class: 'option-text' }, ...ents(scenario, o.text, { gloss: optionGloss })),
         ),
       ),
     ),
@@ -65,7 +69,7 @@ export function decision(ctx: PlayCtx): HTMLElement {
                       }, { rerender: false });
                     },
                   }),
-                  h('span', null, ...redacted(scenario, d.label)),
+                  h('span', null, ...ents(scenario, d.label, { gloss: detailGloss })),
                 ),
               ),
             ),

@@ -1,6 +1,6 @@
 /*
   기록보관소의 열람 사본. 인쇄된 문서는 철담즙 잉크(남흑색), 플레이어가 남기는 것은 모두 복사 연필(보라).
-  눈에 띄는 장치는 하나뿐: 세력 이름을 덮은 가림 막대와, 공개 때 막대가 걷히는 순간.
+  강조색은 형광펜 노랑 하나: 글자색으로 쓰지 않고 바탕으로만 칠한다(당신의 나라, 주 버튼, 지금 단계, 추정 표시).
 */
 :root {
   --paper: #e6eae7;
@@ -10,6 +10,8 @@
   --ink-2: #57616d;
   --rule: #c3cac6;
   --pencil: #5a3d8a;
+  --marker: #f2b530;
+  --marker-2: #e3a316;
   --error: #8f2b2b;
   --serif: 'Hahmlet', 'Noto Serif KR', 'AppleMyungjo', serif;
   --sans: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
@@ -63,34 +65,16 @@ main { max-width: calc(var(--measure) + 32px); margin: 0 auto; padding: 0 16px 5
 .phases li { counter-increment: step; }
 .phases li::before { content: counter(step) ' '; }
 .phases li.done { color: var(--ink-2); }
-.phases li.now { color: var(--ink); font-weight: 600; }
+.phases li.now { color: var(--ink); font-weight: 600; background: var(--marker); padding: 0 0.35em; border-radius: 2px; }
 
-/* 가림 막대: 이 디자인의 단 하나의 장식 */
-.bar {
-  display: inline-block; min-width: 2.4em; padding: 0 0.5em; margin: 0 0.08em;
-  background: var(--ink); color: var(--paper);
-  font-family: var(--sans); font-size: 0.78em; font-weight: 600; line-height: 1.5; text-align: center;
-  vertical-align: 0.08em; border-radius: 1px;
-}
-.bar:empty { height: 0.95em; vertical-align: -0.05em; }
-.bar.wide { min-width: 6.5em; }
-.bar.open { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
-
-.lift { position: relative; display: inline-block; }
-.lift-name { font-weight: 600; }
-/* 막대가 걷히는 연출은 공개 화면 맨 위 전문에서만. 그 아래에서는 실명만 보인다. */
-.lift .bar { display: none; }
-.unmask .lift .bar {
-  position: absolute; inset: 0.15em -0.15em; margin: 0;
-  display: flex; align-items: center; justify-content: center;
-  transform-origin: right center;
-  animation: unmask 0.55s cubic-bezier(0.7, 0, 0.25, 1) forwards;
-  animation-delay: calc(500ms + var(--i, 0) * 140ms);
-}
-@keyframes unmask { to { transform: scaleX(0); } }
+/* 세력 기호: 실명을 치환한 글자. 문서 본문(세리프) 속에서 산세리프로 구별한다. */
+.ent { font-family: var(--sans); font-weight: 600; font-size: 0.94em; letter-spacing: 0.02em; }
+.ent.self { background: var(--marker); padding: 0 0.22em; border-radius: 2px; }
+.gloss { font-family: var(--sans); font-size: 0.8em; color: var(--ink-2); margin-left: 0.08em; }
+.ent.named { font-family: var(--serif); font-size: 1em; letter-spacing: 0; }
+.ent.named sup { font-family: var(--sans); font-size: 0.6em; font-weight: 600; color: var(--ink-2); margin-left: 0.12em; }
 
 @media (prefers-reduced-motion: reduce) {
-  .unmask .lift .bar { display: none; }
   .report.fresh, .objection.fresh { animation: none; }
 }
 
@@ -98,10 +82,10 @@ main { max-width: calc(var(--measure) + 32px); margin: 0 auto; padding: 0 16px 5
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 48px; padding: 0.6rem 1.4rem;
-  font: 600 1rem var(--sans); color: var(--paper); background: var(--ink);
+  font: 600 1rem var(--sans); color: var(--ink); background: var(--marker);
   border: 0; border-radius: 2px; text-decoration: none; cursor: pointer;
 }
-.btn:hover { background: #2f3b4b; }
+.btn:hover { background: var(--marker-2); }
 .btn-text {
   display: inline-flex; align-items: center; min-height: 48px; padding: 0 0.2rem;
   font: 500 0.95rem var(--sans); color: var(--ink); background: none; border: 0; cursor: pointer;
@@ -121,7 +105,6 @@ main { max-width: calc(var(--measure) + 32px); margin: 0 auto; padding: 0 16px 5
 .case:hover .case-title { text-decoration: underline; text-underline-offset: 0.2em; }
 .case-no { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-2); }
 .case-title { font-size: 1.4rem; font-weight: 800; line-height: 1.3; }
-.case-hidden { display: flex; gap: 0.4rem; margin-top: 0.3rem; }
 .case-status { font-family: var(--sans); font-size: 0.85rem; color: var(--pencil); }
 .modes { border: 0; padding: 0; margin: 0; font-family: var(--sans); font-size: 0.92rem; }
 .modes legend { font-weight: 600; margin-bottom: 0.3rem; }
@@ -133,7 +116,8 @@ main { max-width: calc(var(--measure) + 32px); margin: 0 auto; padding: 0 16px 5
 .map { margin: 1.6rem 0 1rem; padding: 0; }
 .map svg { display: block; width: 100%; height: auto; }
 .legend { display: grid; gap: 0.35rem; margin: 0 0 1rem; font-family: var(--sans); font-size: 0.9rem; }
-.legend div { display: grid; grid-template-columns: 3.2em 1fr; align-items: baseline; }
+.legend div { display: grid; grid-template-columns: 2.4em 1fr; align-items: baseline; }
+.legend dt .ent { font-size: 1rem; }
 .legend dd { margin: 0; }
 .legend dd strong { display: block; font-family: var(--serif); font-size: 1rem; }
 .limit-note { font-family: var(--sans); font-size: 0.92rem; color: var(--pencil); margin-top: 1.4rem; }
@@ -146,6 +130,23 @@ main { max-width: calc(var(--measure) + 32px); margin: 0 auto; padding: 0 16px 5
   background: var(--paper); border-bottom: 1px solid var(--rule);
 }
 .toolbar .btn { min-height: 42px; padding: 0.4rem 1rem; font-size: 0.92rem; }
+.toolbar .key { margin: 0 0 0 auto; }
+
+/* 기호 풀이: 펼치면 아래로 떠오르는 작은 표 */
+.key { position: relative; margin: 0 0 1rem; font-family: var(--sans); }
+.key summary {
+  display: inline-flex; align-items: center; min-height: 42px; padding: 0 0.7rem;
+  font-size: 0.88rem; font-weight: 500; cursor: pointer; list-style: none;
+  border: 1px solid var(--rule); border-radius: 2px; background: var(--paper-3);
+}
+.key summary::-webkit-details-marker { display: none; }
+.key[open] summary { border-color: var(--ink); }
+.key .legend {
+  position: absolute; z-index: 10; top: calc(100% + 4px); left: 0; min-width: 15rem;
+  margin: 0; padding: 0.8rem 1rem; background: var(--paper-3);
+  border: 1px solid var(--ink); border-radius: 2px; box-shadow: 0 6px 18px -8px rgba(31, 39, 51, 0.45);
+}
+.toolbar .key .legend { left: auto; right: 0; }
 .tally { display: flex; flex-direction: column; gap: 0.25rem; margin: 0; font-family: var(--sans); font-size: 0.85rem; color: var(--pencil); }
 .tally-count { font-weight: 600; }
 .tally-marks { display: flex; gap: 5px; }
@@ -244,6 +245,7 @@ textarea:focus { outline: none; border-color: var(--pencil); box-shadow: 0 0 0 1
 .side-by-side .mine { padding: 1rem 1.1rem 0.3rem; background: var(--paper-3); }
 .side-by-side .after { margin-top: 1rem; }
 .cf { margin: 0 0 1.4rem; }
+.guess { display: inline-block; margin-right: 0.5em; padding: 0 0.35em; font-family: var(--sans); font-size: 0.75rem; font-weight: 600; background: var(--marker); border-radius: 2px; vertical-align: 0.15em; }
 .correction { margin: 0 0 1.2rem; }
 .correction del { color: var(--ink-2); text-decoration-color: var(--pencil); text-decoration-thickness: 2px; }
 .note { color: var(--ink-2); }

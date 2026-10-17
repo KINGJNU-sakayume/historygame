@@ -3,7 +3,7 @@ import { tagsForChoice } from '../../engine/tags.ts';
 import { update } from '../../store.ts';
 import { h } from '../dom.ts';
 import { ADVISOR_LABEL } from '../labels.ts';
-import { decisionText, optionText, prose, redacted, type PlayCtx } from '../common.ts';
+import { decisionText, ents, keyPanel, optionText, prose, type PlayCtx } from '../common.ts';
 
 export function pushback(ctx: PlayCtx): HTMLElement {
   const { scenario, play } = ctx;
@@ -29,6 +29,7 @@ export function pushback(ctx: PlayCtx): HTMLElement {
     'section',
     { class: 'screen pushback' },
     h('h1', null, '확정 전 반론'),
+    keyPanel(scenario),
     h('div', { class: 'mine' },
       h('p', { class: 'mine-choice' }, ...optionText(scenario, play.option)),
       play.details.length ? h('ul', null, play.details.map((d) => h('li', null, ...decisionText(scenario, d)))) : null,
@@ -36,13 +37,14 @@ export function pushback(ctx: PlayCtx): HTMLElement {
     events.length === 0
       ? h('p', { class: 'muted' }, '자문관들은 반대하지 않았다.')
       : h('ol', { class: 'objections' },
-          events.slice(0, done ? events.length : i + 1).map((ev, n) =>
-            h('li', { class: `objection${n === i ? ' fresh' : ''}` },
+          events.slice(0, done ? events.length : i + 1).map((ev, n) => {
+            const gloss = new Set<string>();
+            return h('li', { class: `objection${n === i ? ' fresh' : ''}` },
               h('p', { class: 'objection-who' }, ADVISOR_LABEL[ev.advisor]),
-              h('h3', null, ...redacted(scenario, ev.title)),
-              h('blockquote', null, ...prose(scenario, ev.text)),
-            ),
-          ),
+              h('h3', null, ...ents(scenario, ev.title)),
+              h('blockquote', null, ...prose(scenario, ev.text, { gloss })),
+            );
+          }),
         ),
     done
       ? h('div', { class: 'afterthought' },

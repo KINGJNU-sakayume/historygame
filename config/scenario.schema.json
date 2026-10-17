@@ -119,10 +119,14 @@
             ],
             "properties": {
               "id": {
-                "$ref": "#/definitions/nonEmpty"
+                "type": "string",
+                "pattern": "^[A-Z]$"
               },
               "label": {
                 "$ref": "#/definitions/nonEmpty"
+              },
+              "self": {
+                "type": "boolean"
               }
             }
           }

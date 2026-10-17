@@ -1,79 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" role="img" aria-label="판세 모식도: 서쪽 바닷가의 A, 동쪽의 D, 북동쪽의 B, 북쪽 바다의 섬 C, 남서쪽 대양 너머의 E">
-  <title>판세 모식도</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 330" role="img" font-family="'IBM Plex Sans KR', sans-serif" aria-label="판세 관계도: A는 D와 국경을 맞대고, D는 B와 맞닿아 있다. B의 군대가 D를 지나 A로 진군한다. C의 함대가 A의 항구를 봉쇄하고, F의 함대가 A의 항구에 정박해 있다. E는 대양 건너 A의 식민지다.">
+  <title>판세 관계도</title>
   <defs>
-    <pattern id="waves" width="16" height="8" patternUnits="userSpaceOnUse">
-      <path d="M0 6 Q4 2 8 6 T16 6" fill="none" stroke="#9aabb5" stroke-width="0.8" opacity="0.5"/>
-    </pattern>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0 0 L10 5 L0 10 z" fill="#1f2733"/>
-    </marker>
-    <marker id="arrow-sea" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#2b4a63"/>
     </marker>
   </defs>
 
-  <!-- 바다 -->
-  <rect width="400" height="320" fill="#d2dadb"/>
-  <rect width="400" height="320" fill="url(#waves)"/>
+  <rect width="400" height="330" fill="#eef1ee"/>
 
-  <!-- 섬나라 C (북쪽 바다) -->
-  <path d="M120 18 L150 10 L172 22 L168 46 L150 60 L128 54 L116 36 Z" fill="#eef1ee" stroke="#1f2733" stroke-width="1.2"/>
-  <text x="142" y="40" font-size="16" font-weight="700" text-anchor="middle" fill="#1f2733">C</text>
+  <!-- 관계선: 행동 -->
+  <!-- F 함대가 A의 항구에 정박 -->
+  <path d="M314 60 C 270 80 210 100 170 146" fill="none" stroke="#57616d" stroke-width="1.4" stroke-dasharray="2 4" marker-end="url(#head)"/>
+  <text x="262" y="104" font-size="10" fill="#57616d">F 함대, A의 항구에 정박</text>
 
-  <!-- 대륙: B (북동쪽) -->
-  <path d="M250 60 L400 40 L400 150 L300 150 L262 128 Z" fill="#e3e8e4" stroke="#1f2733" stroke-width="1.2"/>
-  <text x="340" y="100" font-size="16" font-weight="700" text-anchor="middle" fill="#1f2733">B</text>
+  <!-- A와 E: 대양 건너 -->
+  <path d="M134 144 C 110 120 90 100 70 76" fill="none" stroke="#57616d" stroke-width="1.4" stroke-dasharray="1 5" stroke-linecap="round"/>
+  <text x="80" y="128" font-size="10" fill="#57616d" transform="rotate(48 80 128)">대양 건너</text>
 
-  <!-- 산맥 (B와 D 사이) -->
-  <path d="M262 132 l8 -10 l8 10 l8 -12 l8 12 l8 -9 l8 9 l8 -11 l8 11" fill="none" stroke="#57616d" stroke-width="1.2"/>
+  <!-- C 함대가 A의 항구를 봉쇄 -->
+  <path d="M96 232 C 112 210 124 196 134 181" fill="none" stroke="#1f2733" stroke-width="2" marker-end="url(#head)"/>
+  <text x="18" y="200" font-size="10" fill="#1f2733">C 함대가</text>
+  <text x="18" y="213" font-size="10" fill="#1f2733">A의 항구 봉쇄</text>
 
-  <!-- 반도: D (동쪽, 넓다) -->
-  <path d="M190 140 L262 132 L300 152 L320 200 L300 268 L230 290 L196 270 Z" fill="#eef1ee" stroke="#1f2733" stroke-width="1.2"/>
-  <text x="262" y="215" font-size="16" font-weight="700" text-anchor="middle" fill="#1f2733">D</text>
+  <!-- 원: 크기는 국력, 맞닿으면 국경을 맞댄 나라 -->
+  <circle cx="289" cy="213" r="52" fill="#e3e8e4" stroke="#1f2733" stroke-width="1.5"/>
+  <circle cx="214" cy="160" r="40" fill="#e3e8e4" stroke="#1f2733" stroke-width="1.5"/>
+  <circle cx="150" cy="160" r="24" fill="#f2b530" stroke="#1f2733" stroke-width="1.5"/>
+  <circle cx="64" cy="262" r="46" fill="#e3e8e4" stroke="#1f2733" stroke-width="1.5"/>
+  <circle cx="48" cy="50" r="26" fill="#eef1ee" stroke="#1f2733" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <circle cx="330" cy="48" r="18" fill="#e3e8e4" stroke="#1f2733" stroke-width="1.5"/>
 
-  <!-- 해안 소국 A (서쪽 바닷가) -->
-  <path d="M168 146 L190 140 L196 270 L176 282 L158 250 L164 210 L156 184 Z" fill="#fafbf9" stroke="#1f2733" stroke-width="1.6"/>
-  <text x="178" y="172" font-size="16" font-weight="700" text-anchor="middle" fill="#1f2733">A</text>
+  <!-- B의 군대가 D를 지나 A로 -->
+  <path d="M262 196 C 236 182 210 168 178 162" fill="none" stroke="#1f2733" stroke-width="2.6" stroke-dasharray="7 4" marker-end="url(#head)"/>
 
-  <!-- 큰 강 (D에서 A의 수도로) -->
-  <path d="M280 196 C250 204 230 210 200 214 C186 216 176 222 162 226" fill="none" stroke="#7d93a6" stroke-width="2.4"/>
-
-  <!-- 수도 -->
-  <g transform="translate(166 228)">
-    <path d="M0 -7 L2 -2 L7 -2 L3 1 L5 6 L0 3 L-5 6 L-3 1 L-7 -2 L-2 -2 Z" fill="#1f2733"/>
+  <!-- 기호와 짧은 설명 -->
+  <g font-weight="600" fill="#1f2733" text-anchor="middle">
+    <text x="150" y="166" font-size="17">A</text>
+    <text x="214" y="146" font-size="17">D</text>
+    <text x="289" y="214" font-size="20">B</text>
+    <text x="64" y="268" font-size="20">C</text>
+    <text x="48" y="56" font-size="16">E</text>
+    <text x="330" y="54" font-size="14">F</text>
   </g>
-  <text x="150" y="246" font-size="9" text-anchor="end" fill="#1f2733">수도</text>
-
-  <!-- 적군 진격로: B → D를 지나 강을 따라 → A의 수도 -->
-  <path d="M300 140 C292 170 286 186 270 198 C246 206 220 210 182 220" fill="none" stroke="#1f2733" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
-  <text x="296" y="168" font-size="9" fill="#1f2733">B군</text>
-
-  <!-- 강어귀의 C 함대 -->
-  <g transform="translate(138 224)" fill="#2b4a63">
-    <path d="M-8 2 L8 2 L5 6 L-5 6 Z"/>
-    <path d="M0 -8 L0 2 M0 -7 L6 0 L0 0" fill="none" stroke="#2b4a63" stroke-width="1.2"/>
+  <g font-size="9.5" fill="#57616d" text-anchor="middle">
+    <text x="150" y="198">우리</text>
+    <text x="214" y="214">B의 동맹</text>
+    <text x="289" y="232">대륙의 제국</text>
+    <text x="64" y="284">A의 옛 동맹</text>
+    <text x="48" y="90">A의 식민지</text>
+    <text x="330" y="22">B의 동맹</text>
   </g>
-  <text x="122" y="214" font-size="9" text-anchor="end" fill="#2b4a63">C 함대</text>
+  <text x="262" y="140" font-size="10" fill="#1f2733" font-weight="600">B군 진군, D를 지나</text>
 
-  <!-- 강 안의 F 함대 -->
-  <g transform="translate(186 214) scale(0.7)" fill="#57616d">
-    <path d="M-8 2 L8 2 L5 6 L-5 6 Z"/>
-    <path d="M0 -8 L0 2 M0 -7 L6 0 L0 0" fill="none" stroke="#57616d" stroke-width="1.6"/>
-  </g>
-  <text x="196" y="204" font-size="9" fill="#57616d">F 함대</text>
-
-  <!-- 대양 너머 E (남서쪽, 축척 무시) -->
-  <path d="M8 268 L58 258 L74 290 L56 314 L14 314 Z" fill="#e3e8e4" stroke="#1f2733" stroke-width="1.2" stroke-dasharray="3 2"/>
-  <text x="40" y="292" font-size="16" font-weight="700" text-anchor="middle" fill="#1f2733">E</text>
-  <path d="M132 236 C100 250 86 262 72 272" fill="none" stroke="#2b4a63" stroke-width="1.4" stroke-dasharray="2 3" marker-end="url(#arrow-sea)"/>
-  <text x="96" y="272" font-size="8" text-anchor="middle" fill="#2b4a63" transform="rotate(-28 96 272)">대양 건너</text>
-
-  <!-- 나침반 -->
-  <g transform="translate(372 286)" fill="none" stroke="#1f2733" stroke-width="1">
-    <circle r="14"/>
-    <path d="M0 -12 L3 0 L0 12 L-3 0 Z" fill="#1f2733"/>
-    <text y="-17" font-size="9" text-anchor="middle" fill="#1f2733" stroke="none">북</text>
-  </g>
-
-  <text x="8" y="14" font-size="8" fill="#57616d">축척과 모양은 실제와 다르다</text>
+  <text x="200" y="320" font-size="9" fill="#57616d" text-anchor="middle">원 크기는 국력, 맞닿은 원은 국경을 맞댄 나라. 위치는 실제 지리와 무관하다.</text>
 </svg>

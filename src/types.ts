@@ -14,6 +14,8 @@ export interface Source {
 export interface Entity {
   id: string;
   label: string;
+  /** 플레이어가 맡은 나라. 한 시나리오에 하나. */
+  self?: boolean;
 }
 
 export interface Option {
